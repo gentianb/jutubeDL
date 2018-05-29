@@ -1,0 +1,501 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C5C173AE2883BA2FA2E21129 /* Pods_jutubeDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41F95CE95121F3A8B618DBAE /* Pods_jutubeDL.framework */; };
+		F80C9AD920BCBFFC00846726 /* JDLYoutubeWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80C9AD820BCBFFC00846726 /* JDLYoutubeWebViewController.swift */; };
+		F82C55F420BB89E200B3D112 /* JDLPlaylistTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82C55F320BB89E200B3D112 /* JDLPlaylistTabBarItem.swift */; };
+		F82C55F620BB908A00B3D112 /* NSObject+ClassNameSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82C55F520BB908A00B3D112 /* NSObject+ClassNameSegue.swift */; };
+		F83D1B0420BB0CBB00253523 /* JDLPlayListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83D1B0320BB0CBB00253523 /* JDLPlayListViewController.swift */; };
+		F83D1B0620BB0E0700253523 /* JDLTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83D1B0520BB0E0700253523 /* JDLTabBar.swift */; };
+		F83D1B0A20BB1A2D00253523 /* PlaylistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83D1B0920BB1A2D00253523 /* PlaylistTableViewCell.swift */; };
+		F847233D20BB226900BB8BD2 /* JDLDownloadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F847233C20BB226900BB8BD2 /* JDLDownloadViewController.swift */; };
+		F847233F20BB248200BB8BD2 /* UIViewController+DismissKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F847233E20BB248200BB8BD2 /* UIViewController+DismissKeyboard.swift */; };
+		F884E6FA20BDE10A0068FB65 /* JDLAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F884E6F920BDE10A0068FB65 /* JDLAudioPlayer.swift */; };
+		F884E6FE20BDE72A0068FB65 /* JDLAudioFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F884E6FD20BDE72A0068FB65 /* JDLAudioFile.swift */; };
+		F884E70020BDF9280068FB65 /* RequestSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F884E6FF20BDF9280068FB65 /* RequestSource.swift */; };
+		F8B4F11920B71D51004EE642 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B4F11820B71D51004EE642 /* AppDelegate.swift */; };
+		F8B4F11B20B71D51004EE642 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B4F11A20B71D51004EE642 /* ViewController.swift */; };
+		F8B4F11E20B71D51004EE642 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8B4F11C20B71D51004EE642 /* Main.storyboard */; };
+		F8B4F12020B71D53004EE642 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8B4F11F20B71D53004EE642 /* Assets.xcassets */; };
+		F8B4F12320B71D53004EE642 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8B4F12120B71D53004EE642 /* LaunchScreen.storyboard */; };
+		F8B4F12B20B71DB9004EE642 /* Jutube.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B4F12A20B71DB9004EE642 /* Jutube.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		41F95CE95121F3A8B618DBAE /* Pods_jutubeDL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jutubeDL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A551C776F0F790772149641 /* Pods-jutubeDL.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jutubeDL.release.xcconfig"; path = "Pods/Target Support Files/Pods-jutubeDL/Pods-jutubeDL.release.xcconfig"; sourceTree = "<group>"; };
+		C5043994F87566477DA17C29 /* Pods-jutubeDL.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jutubeDL.debug.xcconfig"; path = "Pods/Target Support Files/Pods-jutubeDL/Pods-jutubeDL.debug.xcconfig"; sourceTree = "<group>"; };
+		F80C9AD820BCBFFC00846726 /* JDLYoutubeWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDLYoutubeWebViewController.swift; sourceTree = "<group>"; };
+		F82C55F320BB89E200B3D112 /* JDLPlaylistTabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDLPlaylistTabBarItem.swift; sourceTree = "<group>"; };
+		F82C55F520BB908A00B3D112 /* NSObject+ClassNameSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+ClassNameSegue.swift"; sourceTree = "<group>"; };
+		F83D1B0320BB0CBB00253523 /* JDLPlayListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDLPlayListViewController.swift; sourceTree = "<group>"; };
+		F83D1B0520BB0E0700253523 /* JDLTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDLTabBar.swift; sourceTree = "<group>"; };
+		F83D1B0920BB1A2D00253523 /* PlaylistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewCell.swift; sourceTree = "<group>"; };
+		F847233C20BB226900BB8BD2 /* JDLDownloadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDLDownloadViewController.swift; sourceTree = "<group>"; };
+		F847233E20BB248200BB8BD2 /* UIViewController+DismissKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+DismissKeyboard.swift"; sourceTree = "<group>"; };
+		F884E6F920BDE10A0068FB65 /* JDLAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDLAudioPlayer.swift; sourceTree = "<group>"; };
+		F884E6FD20BDE72A0068FB65 /* JDLAudioFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDLAudioFile.swift; sourceTree = "<group>"; };
+		F884E6FF20BDF9280068FB65 /* RequestSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSource.swift; sourceTree = "<group>"; };
+		F8B4F11520B71D51004EE642 /* jutubeDL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jutubeDL.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8B4F11820B71D51004EE642 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F8B4F11A20B71D51004EE642 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F8B4F11D20B71D51004EE642 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F8B4F11F20B71D53004EE642 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F8B4F12220B71D53004EE642 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F8B4F12420B71D53004EE642 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F8B4F12A20B71DB9004EE642 /* Jutube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jutube.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F8B4F11220B71D51004EE642 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C5C173AE2883BA2FA2E21129 /* Pods_jutubeDL.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		51EBE0CED5DDD5EAD0AC5038 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C5043994F87566477DA17C29 /* Pods-jutubeDL.debug.xcconfig */,
+				9A551C776F0F790772149641 /* Pods-jutubeDL.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		6379A0B62AF694392FE840D5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				41F95CE95121F3A8B618DBAE /* Pods_jutubeDL.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F82C55F720BB97AE00B3D112 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F847233E20BB248200BB8BD2 /* UIViewController+DismissKeyboard.swift */,
+				F82C55F520BB908A00B3D112 /* NSObject+ClassNameSegue.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F83D1B0020BB0C9C00253523 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F884E6F920BDE10A0068FB65 /* JDLAudioPlayer.swift */,
+				F884E6FD20BDE72A0068FB65 /* JDLAudioFile.swift */,
+				F884E6FF20BDF9280068FB65 /* RequestSource.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F83D1B0120BB0CA200253523 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F83D1B0520BB0E0700253523 /* JDLTabBar.swift */,
+				F83D1B0920BB1A2D00253523 /* PlaylistTableViewCell.swift */,
+				F82C55F320BB89E200B3D112 /* JDLPlaylistTabBarItem.swift */,
+				F80C9AD820BCBFFC00846726 /* JDLYoutubeWebViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F83D1B0220BB0CA600253523 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F847233C20BB226900BB8BD2 /* JDLDownloadViewController.swift */,
+				F83D1B0320BB0CBB00253523 /* JDLPlayListViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		F8B4F10C20B71D51004EE642 = {
+			isa = PBXGroup;
+			children = (
+				F8B4F11720B71D51004EE642 /* jutubeDL */,
+				F8B4F11620B71D51004EE642 /* Products */,
+				51EBE0CED5DDD5EAD0AC5038 /* Pods */,
+				6379A0B62AF694392FE840D5 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		F8B4F11620B71D51004EE642 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F8B4F11520B71D51004EE642 /* jutubeDL.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F8B4F11720B71D51004EE642 /* jutubeDL */ = {
+			isa = PBXGroup;
+			children = (
+				F8B4F11A20B71D51004EE642 /* ViewController.swift */,
+				F8B4F12A20B71DB9004EE642 /* Jutube.swift */,
+				F8B4F11820B71D51004EE642 /* AppDelegate.swift */,
+				F82C55F720BB97AE00B3D112 /* Extensions */,
+				F83D1B0020BB0C9C00253523 /* Model */,
+				F83D1B0120BB0CA200253523 /* View */,
+				F83D1B0220BB0CA600253523 /* Controller */,
+				F8B4F11C20B71D51004EE642 /* Main.storyboard */,
+				F8B4F12120B71D53004EE642 /* LaunchScreen.storyboard */,
+				F8B4F11F20B71D53004EE642 /* Assets.xcassets */,
+				F8B4F12420B71D53004EE642 /* Info.plist */,
+				F8B4F12C20B762BE004EE642 /* musique */,
+			);
+			path = jutubeDL;
+			sourceTree = "<group>";
+		};
+		F8B4F12C20B762BE004EE642 /* musique */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = musique;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F8B4F11420B71D51004EE642 /* jutubeDL */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8B4F12720B71D53004EE642 /* Build configuration list for PBXNativeTarget "jutubeDL" */;
+			buildPhases = (
+				4668066CCA2358F3EA79BFEB /* [CP] Check Pods Manifest.lock */,
+				F8B4F11120B71D51004EE642 /* Sources */,
+				F8B4F11220B71D51004EE642 /* Frameworks */,
+				F8B4F11320B71D51004EE642 /* Resources */,
+				F3F1039CB2CC7B2F798FEBEA /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = jutubeDL;
+			productName = jutubeDL;
+			productReference = F8B4F11520B71D51004EE642 /* jutubeDL.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F8B4F10D20B71D51004EE642 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = "Gentian Barileva";
+				TargetAttributes = {
+					F8B4F11420B71D51004EE642 = {
+						CreatedOnToolsVersion = 9.3.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = F8B4F11020B71D51004EE642 /* Build configuration list for PBXProject "jutubeDL" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F8B4F10C20B71D51004EE642;
+			productRefGroup = F8B4F11620B71D51004EE642 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F8B4F11420B71D51004EE642 /* jutubeDL */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F8B4F11320B71D51004EE642 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8B4F12320B71D53004EE642 /* LaunchScreen.storyboard in Resources */,
+				F8B4F12020B71D53004EE642 /* Assets.xcassets in Resources */,
+				F8B4F11E20B71D51004EE642 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4668066CCA2358F3EA79BFEB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-jutubeDL-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F3F1039CB2CC7B2F798FEBEA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-jutubeDL/Pods-jutubeDL-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-jutubeDL/Pods-jutubeDL-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F8B4F11120B71D51004EE642 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F83D1B0420BB0CBB00253523 /* JDLPlayListViewController.swift in Sources */,
+				F8B4F11B20B71D51004EE642 /* ViewController.swift in Sources */,
+				F8B4F12B20B71DB9004EE642 /* Jutube.swift in Sources */,
+				F8B4F11920B71D51004EE642 /* AppDelegate.swift in Sources */,
+				F884E6FA20BDE10A0068FB65 /* JDLAudioPlayer.swift in Sources */,
+				F83D1B0620BB0E0700253523 /* JDLTabBar.swift in Sources */,
+				F884E70020BDF9280068FB65 /* RequestSource.swift in Sources */,
+				F80C9AD920BCBFFC00846726 /* JDLYoutubeWebViewController.swift in Sources */,
+				F83D1B0A20BB1A2D00253523 /* PlaylistTableViewCell.swift in Sources */,
+				F847233F20BB248200BB8BD2 /* UIViewController+DismissKeyboard.swift in Sources */,
+				F884E6FE20BDE72A0068FB65 /* JDLAudioFile.swift in Sources */,
+				F82C55F620BB908A00B3D112 /* NSObject+ClassNameSegue.swift in Sources */,
+				F82C55F420BB89E200B3D112 /* JDLPlaylistTabBarItem.swift in Sources */,
+				F847233D20BB226900BB8BD2 /* JDLDownloadViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F8B4F11C20B71D51004EE642 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F8B4F11D20B71D51004EE642 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F8B4F12120B71D53004EE642 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F8B4F12220B71D53004EE642 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F8B4F12520B71D53004EE642 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F8B4F12620B71D53004EE642 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F8B4F12820B71D53004EE642 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C5043994F87566477DA17C29 /* Pods-jutubeDL.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YQP86PXBQJ;
+				INFOPLIST_FILE = jutubeDL/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.barileva.jutubeDL;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F8B4F12920B71D53004EE642 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A551C776F0F790772149641 /* Pods-jutubeDL.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YQP86PXBQJ;
+				INFOPLIST_FILE = jutubeDL/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.barileva.jutubeDL;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F8B4F11020B71D51004EE642 /* Build configuration list for PBXProject "jutubeDL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8B4F12520B71D53004EE642 /* Debug */,
+				F8B4F12620B71D53004EE642 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8B4F12720B71D53004EE642 /* Build configuration list for PBXNativeTarget "jutubeDL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8B4F12820B71D53004EE642 /* Debug */,
+				F8B4F12920B71D53004EE642 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F8B4F10D20B71D51004EE642 /* Project object */;
+}
