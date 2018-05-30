@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,11 +20,9 @@
 		F884E6FE20BDE72A0068FB65 /* JDLAudioFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F884E6FD20BDE72A0068FB65 /* JDLAudioFile.swift */; };
 		F884E70020BDF9280068FB65 /* RequestSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F884E6FF20BDF9280068FB65 /* RequestSource.swift */; };
 		F8B4F11920B71D51004EE642 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B4F11820B71D51004EE642 /* AppDelegate.swift */; };
-		F8B4F11B20B71D51004EE642 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B4F11A20B71D51004EE642 /* ViewController.swift */; };
 		F8B4F11E20B71D51004EE642 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8B4F11C20B71D51004EE642 /* Main.storyboard */; };
 		F8B4F12020B71D53004EE642 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8B4F11F20B71D53004EE642 /* Assets.xcassets */; };
 		F8B4F12320B71D53004EE642 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8B4F12120B71D53004EE642 /* LaunchScreen.storyboard */; };
-		F8B4F12B20B71DB9004EE642 /* Jutube.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B4F12A20B71DB9004EE642 /* Jutube.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,12 +42,10 @@
 		F884E6FF20BDF9280068FB65 /* RequestSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSource.swift; sourceTree = "<group>"; };
 		F8B4F11520B71D51004EE642 /* jutubeDL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jutubeDL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8B4F11820B71D51004EE642 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F8B4F11A20B71D51004EE642 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F8B4F11D20B71D51004EE642 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F8B4F11F20B71D53004EE642 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F8B4F12220B71D53004EE642 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F8B4F12420B71D53004EE642 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F8B4F12A20B71DB9004EE642 /* Jutube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jutube.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,8 +137,6 @@
 		F8B4F11720B71D51004EE642 /* jutubeDL */ = {
 			isa = PBXGroup;
 			children = (
-				F8B4F11A20B71D51004EE642 /* ViewController.swift */,
-				F8B4F12A20B71DB9004EE642 /* Jutube.swift */,
 				F8B4F11820B71D51004EE642 /* AppDelegate.swift */,
 				F82C55F720BB97AE00B3D112 /* Extensions */,
 				F83D1B0020BB0C9C00253523 /* Model */,
@@ -198,6 +192,7 @@
 				TargetAttributes = {
 					F8B4F11420B71D51004EE642 = {
 						CreatedOnToolsVersion = 9.3.1;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -207,7 +202,7 @@
 				};
 			};
 			buildConfigurationList = F8B4F11020B71D51004EE642 /* Build configuration list for PBXProject "jutubeDL" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -284,8 +279,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F83D1B0420BB0CBB00253523 /* JDLPlayListViewController.swift in Sources */,
-				F8B4F11B20B71D51004EE642 /* ViewController.swift in Sources */,
-				F8B4F12B20B71DB9004EE642 /* Jutube.swift in Sources */,
 				F8B4F11920B71D51004EE642 /* AppDelegate.swift in Sources */,
 				F884E6FA20BDE10A0068FB65 /* JDLAudioPlayer.swift in Sources */,
 				F83D1B0620BB0E0700253523 /* JDLTabBar.swift in Sources */,
@@ -430,8 +423,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -444,10 +436,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YQP86PXBQJ;
 				INFOPLIST_FILE = jutubeDL/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.barileva.jutubeDL;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -463,10 +452,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YQP86PXBQJ;
 				INFOPLIST_FILE = jutubeDL/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.barileva.jutubeDL;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

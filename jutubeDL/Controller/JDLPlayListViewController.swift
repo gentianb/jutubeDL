@@ -27,8 +27,8 @@ class JDLPlayListViewController: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         print("viewDidAppear")
-        print(localAudioFilesCount != instance.totalAudioFiles())
-        if localAudioFilesCount != instance.totalAudioFiles(){
+        print(localAudioFilesCount != instance.totalAudioFiles)
+        if localAudioFilesCount != instance.totalAudioFiles{
             tableView.reloadData()
         }
 
@@ -43,8 +43,8 @@ class JDLPlayListViewController: UIViewController {
 extension JDLPlayListViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        localAudioFilesCount = instance.totalAudioFiles()
-        return instance.totalAudioFiles()
+        localAudioFilesCount = instance.totalAudioFiles
+        return instance.totalAudioFiles
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

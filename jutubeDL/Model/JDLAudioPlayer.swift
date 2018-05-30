@@ -11,11 +11,13 @@ import UIKit
 import AVFoundation
 import MediaPlayer
 
-class JDLAudioPlayer: NSObject{
+class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
    static let instance = JDLAudioPlayer()
     
     private var audioFiles = [JDLAudioFile]()
     private var player: AVAudioPlayer?
+    private var currentlyPlaying = 0
+    private var isReceivingRemoteControlEvents = false
 
     
     //MARK: - Fetch Audio Files and process them
@@ -58,30 +60,108 @@ class JDLAudioPlayer: NSObject{
     func getNameAndAlbumart(_ index: Int) -> (name: String, albumart: UIImage){
         return (audioFiles[index].name, audioFiles[index].albumart)
     }
-    func totalAudioFiles() -> Int{
-        return audioFiles.count
+    var totalAudioFiles: Int{
+        get{
+            return audioFiles.count
+        }
+    }
+    var isPlaying: Bool{
+        get{
+            return player!.isPlaying
+        }
     }
     //MARK: - Audio Player
     
-    @objc private func playFromMP(){
+    func handleRemoteEvent(event: UIEventSubtype){
+        print("Recieved remote event")
+        // Disabled for now because it's triggering twice in conjunction with MediaCenter commands
+        
+//        switch event.rawValue {
+//            //the reason why we can unwrap player object is because we recieve events only when we start playing
+//            // the rare case where it could be nil is when a download fails, and we played beforehand so when we click
+//            // on a failed mp3 it might crash
+//        case 103:
+//            if player!.isPlaying{
+//                pause()
+//            }else{
+//                resume()
+//            }
+//        case 104:
+//            //next()
+//            print("Next event")
+//        case 105:
+//            previous()
+//        default:
+//            break
+//        }
+    }
+    
+    @objc private func resume(){
         player!.play()
     }
-    @objc private func pauseFromMP(){
+    @objc private func pause(){
         player!.pause()
+    }
+    @objc func next(){
+        print(currentlyPlaying)
+        print(totalAudioFiles)
+        if currentlyPlaying < totalAudioFiles-1 {
+            do {
+                print("INSIDE NEXT")
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+                try AVAudioSession.sharedInstance().setActive(true)
+                currentlyPlaying += 1
+                player = try AVAudioPlayer(contentsOf: audioFiles[currentlyPlaying].path)
+                player!.delegate = self
+                guard let player = player else { return }
+                player.play()
+                updateMediaCenter(currentlyPlaying, duration: player.duration)
+            } catch let error as NSError {
+                print(error.localizedDescription)
+                currentlyPlaying -= 1
+
+            } catch {
+                print("AVAudioPlayer init failed")
+            }
+        }
+    }
+    @objc func previous(){
+        if currentlyPlaying > 0  {
+            do {
+                print("INSIDE NEXT")
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+                try AVAudioSession.sharedInstance().setActive(true)
+                currentlyPlaying -= 1
+                player = try AVAudioPlayer(contentsOf: audioFiles[currentlyPlaying].path)
+                player!.delegate = self
+                guard let player = player else { return }
+                player.play()
+                updateMediaCenter(currentlyPlaying, duration: player.duration)
+            } catch let error as NSError {
+                print(error.localizedDescription)
+                currentlyPlaying += 1
+            } catch {
+                print("AVAudioPlayer init failed")
+            }
+        }
     }
     
     func play(with index: Int) {
         //print("playing \(url)")
+        currentlyPlaying = index
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
             try AVAudioSession.sharedInstance().setActive(true)
             
-            player = try AVAudioPlayer(contentsOf: audioFiles[index].path)
+            player = try AVAudioPlayer(contentsOf: audioFiles[currentlyPlaying].path)
+            player!.delegate = self
             guard let player = player else { return }
-            setUpMediaCenter(index, duration: player.duration)
             player.play()
-            
-            
+            if !isReceivingRemoteControlEvents{
+                print("set up media center")
+                setUpMediaCenter()
+            }
+            updateMediaCenter(index, duration: player.duration)
         } catch let error as NSError {
             print(error.localizedDescription)
         } catch {
@@ -89,24 +169,35 @@ class JDLAudioPlayer: NSObject{
         }
     }
     
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        print("Did finish playing")
+        next()
+    }
+    
     //MARK: - MediaInfo Center Setup
-    private func setUpMediaCenter(_ index: Int, duration: TimeInterval){
+    
+    private func setUpMediaCenter(){
+        isReceivingRemoteControlEvents = true
+        print("INSIDE OF MEDIA CENTER")
+        UIApplication.shared.beginReceivingRemoteControlEvents()
+        
+        let commandCenter = MPRemoteCommandCenter.shared()
+
+        commandCenter.playCommand.addTarget(self, action: #selector(resume))
+        commandCenter.pauseCommand.addTarget(self, action: #selector(pause))
+        commandCenter.nextTrackCommand.addTarget(self, action: #selector(next))
+        commandCenter.previousTrackCommand.addTarget(self, action: #selector(previous))
+    }
+    
+    private func updateMediaCenter(_ index: Int, duration: TimeInterval){
         let image = audioFiles[index].albumart
         let artwork = MPMediaItemArtwork.init(boundsSize: image.size, requestHandler: { (size) -> UIImage in
             return image
         })
-        
         MPNowPlayingInfoCenter.default().nowPlayingInfo = [MPMediaItemPropertyTitle : audioFiles[index].name,
                                                            MPMediaItemPropertyArtwork : artwork,
                                                            MPMediaItemPropertyArtist : audioFiles[index].name,
-                                                           MPMediaItemPropertyPlaybackDuration : duration, MPNowPlayingInfoPropertyPlaybackRate : NSNumber(value: 1.0)]
-        UIApplication.shared.beginReceivingRemoteControlEvents()
-        let commandCenter = MPRemoteCommandCenter.shared()
-        commandCenter.playCommand.isEnabled = true
-        commandCenter.playCommand.addTarget(self, action: #selector(playFromMP))
-        
-        commandCenter.pauseCommand.isEnabled = true
-        commandCenter.pauseCommand.addTarget(self, action: #selector(pauseFromMP))
-
+                                                           MPMediaItemPropertyPlaybackDuration : duration,
+                                                           MPNowPlayingInfoPropertyPlaybackRate : NSNumber(value: 1.0)]
     }
 }
