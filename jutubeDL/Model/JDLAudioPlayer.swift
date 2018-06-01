@@ -18,6 +18,7 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
     private var player: AVAudioPlayer?
     private var currentlyPlaying = 0
     private var isReceivingRemoteControlEvents = false
+    var jdlNowPlayingVCDelegate: JDLNowPlayingVCDelegate?
 
     
     //MARK: - Fetch Audio Files and process them
@@ -57,8 +58,11 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
         return UIImage(named: "default-album-image")!
     }
     //MARK: - Get audioPlayer
-    func getNameAndAlbumart(_ index: Int) -> (name: String, albumart: UIImage){
-        return (audioFiles[index].name, audioFiles[index].albumart)
+    func getAudioFile(for index: Int) -> JDLAudioFile{
+        return audioFiles[index]
+    }
+    func getCurrentAudioFile() -> JDLAudioFile{
+        return audioFiles[currentlyPlaying]
     }
     var totalAudioFiles: Int{
         get{
@@ -67,40 +71,18 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
     }
     var isPlaying: Bool{
         get{
-            return player!.isPlaying
+            guard let player = player else{return false}
+            return player.isPlaying
         }
     }
     //MARK: - Audio Player
     
-    func handleRemoteEvent(event: UIEventSubtype){
-        print("Recieved remote event")
-        // Disabled for now because it's triggering twice in conjunction with MediaCenter commands
-        
-//        switch event.rawValue {
-//            //the reason why we can unwrap player object is because we recieve events only when we start playing
-//            // the rare case where it could be nil is when a download fails, and we played beforehand so when we click
-//            // on a failed mp3 it might crash
-//        case 103:
-//            if player!.isPlaying{
-//                pause()
-//            }else{
-//                resume()
-//            }
-//        case 104:
-//            //next()
-//            print("Next event")
-//        case 105:
-//            previous()
-//        default:
-//            break
-//        }
-    }
-    
-    @objc private func resume(){
-        player!.play()
-    }
-    @objc private func pause(){
-        player!.pause()
+    @objc func togglePlayResume(){
+        if isPlaying{
+            player?.pause()
+        }else{
+            player?.play()
+        }
     }
     @objc func next(){
         print(currentlyPlaying)
@@ -116,6 +98,7 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
                 guard let player = player else { return }
                 player.play()
                 updateMediaCenter(currentlyPlaying, duration: player.duration)
+                jdlNowPlayingVCDelegate?.callUpdateViews()
             } catch let error as NSError {
                 print(error.localizedDescription)
                 currentlyPlaying -= 1
@@ -137,6 +120,8 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
                 guard let player = player else { return }
                 player.play()
                 updateMediaCenter(currentlyPlaying, duration: player.duration)
+                jdlNowPlayingVCDelegate?.callUpdateViews()
+
             } catch let error as NSError {
                 print(error.localizedDescription)
                 currentlyPlaying += 1
@@ -162,6 +147,7 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
                 setUpMediaCenter()
             }
             updateMediaCenter(index, duration: player.duration)
+            jdlNowPlayingVCDelegate?.callUpdateViews()
         } catch let error as NSError {
             print(error.localizedDescription)
         } catch {
@@ -183,8 +169,8 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
         
         let commandCenter = MPRemoteCommandCenter.shared()
 
-        commandCenter.playCommand.addTarget(self, action: #selector(resume))
-        commandCenter.pauseCommand.addTarget(self, action: #selector(pause))
+        commandCenter.playCommand.addTarget(self, action: #selector(togglePlayResume))
+        commandCenter.pauseCommand.addTarget(self, action: #selector(togglePlayResume))
         commandCenter.nextTrackCommand.addTarget(self, action: #selector(next))
         commandCenter.previousTrackCommand.addTarget(self, action: #selector(previous))
     }

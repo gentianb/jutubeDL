@@ -24,7 +24,10 @@ class JDLDownloadViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBAction func clearButtonPressed(_ sender: Any) {
+        urlTextField.text = nil
+    }
+    
     @IBOutlet weak var urlTextField: UITextField!
     @IBOutlet weak var downloadButton: UIButton!
     @IBOutlet weak var songNameLabel: UILabel!

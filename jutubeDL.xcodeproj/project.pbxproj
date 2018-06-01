@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C5C173AE2883BA2FA2E21129 /* Pods_jutubeDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41F95CE95121F3A8B618DBAE /* Pods_jutubeDL.framework */; };
 		F80C9AD920BCBFFC00846726 /* JDLYoutubeWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80C9AD820BCBFFC00846726 /* JDLYoutubeWebViewController.swift */; };
+		F818D27220C0AC9700B544B5 /* JDLNowPlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F818D27120C0AC9700B544B5 /* JDLNowPlayingViewController.swift */; };
 		F82C55F420BB89E200B3D112 /* JDLPlaylistTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82C55F320BB89E200B3D112 /* JDLPlaylistTabBarItem.swift */; };
 		F82C55F620BB908A00B3D112 /* NSObject+ClassNameSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82C55F520BB908A00B3D112 /* NSObject+ClassNameSegue.swift */; };
 		F83D1B0420BB0CBB00253523 /* JDLPlayListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83D1B0320BB0CBB00253523 /* JDLPlayListViewController.swift */; };
@@ -18,7 +19,6 @@
 		F847233F20BB248200BB8BD2 /* UIViewController+DismissKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F847233E20BB248200BB8BD2 /* UIViewController+DismissKeyboard.swift */; };
 		F884E6FA20BDE10A0068FB65 /* JDLAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F884E6F920BDE10A0068FB65 /* JDLAudioPlayer.swift */; };
 		F884E6FE20BDE72A0068FB65 /* JDLAudioFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F884E6FD20BDE72A0068FB65 /* JDLAudioFile.swift */; };
-		F884E70020BDF9280068FB65 /* RequestSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F884E6FF20BDF9280068FB65 /* RequestSource.swift */; };
 		F8B4F11920B71D51004EE642 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B4F11820B71D51004EE642 /* AppDelegate.swift */; };
 		F8B4F11E20B71D51004EE642 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8B4F11C20B71D51004EE642 /* Main.storyboard */; };
 		F8B4F12020B71D53004EE642 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8B4F11F20B71D53004EE642 /* Assets.xcassets */; };
@@ -30,6 +30,7 @@
 		9A551C776F0F790772149641 /* Pods-jutubeDL.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jutubeDL.release.xcconfig"; path = "Pods/Target Support Files/Pods-jutubeDL/Pods-jutubeDL.release.xcconfig"; sourceTree = "<group>"; };
 		C5043994F87566477DA17C29 /* Pods-jutubeDL.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jutubeDL.debug.xcconfig"; path = "Pods/Target Support Files/Pods-jutubeDL/Pods-jutubeDL.debug.xcconfig"; sourceTree = "<group>"; };
 		F80C9AD820BCBFFC00846726 /* JDLYoutubeWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDLYoutubeWebViewController.swift; sourceTree = "<group>"; };
+		F818D27120C0AC9700B544B5 /* JDLNowPlayingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDLNowPlayingViewController.swift; sourceTree = "<group>"; };
 		F82C55F320BB89E200B3D112 /* JDLPlaylistTabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDLPlaylistTabBarItem.swift; sourceTree = "<group>"; };
 		F82C55F520BB908A00B3D112 /* NSObject+ClassNameSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+ClassNameSegue.swift"; sourceTree = "<group>"; };
 		F83D1B0320BB0CBB00253523 /* JDLPlayListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDLPlayListViewController.swift; sourceTree = "<group>"; };
@@ -39,7 +40,6 @@
 		F847233E20BB248200BB8BD2 /* UIViewController+DismissKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+DismissKeyboard.swift"; sourceTree = "<group>"; };
 		F884E6F920BDE10A0068FB65 /* JDLAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDLAudioPlayer.swift; sourceTree = "<group>"; };
 		F884E6FD20BDE72A0068FB65 /* JDLAudioFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDLAudioFile.swift; sourceTree = "<group>"; };
-		F884E6FF20BDF9280068FB65 /* RequestSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSource.swift; sourceTree = "<group>"; };
 		F8B4F11520B71D51004EE642 /* jutubeDL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jutubeDL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8B4F11820B71D51004EE642 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8B4F11D20B71D51004EE642 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -91,7 +91,6 @@
 			children = (
 				F884E6F920BDE10A0068FB65 /* JDLAudioPlayer.swift */,
 				F884E6FD20BDE72A0068FB65 /* JDLAudioFile.swift */,
-				F884E6FF20BDF9280068FB65 /* RequestSource.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -111,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				F847233C20BB226900BB8BD2 /* JDLDownloadViewController.swift */,
+				F818D27120C0AC9700B544B5 /* JDLNowPlayingViewController.swift */,
 				F83D1B0320BB0CBB00253523 /* JDLPlayListViewController.swift */,
 			);
 			path = Controller;
@@ -259,11 +259,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-jutubeDL/Pods-jutubeDL-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -282,7 +284,6 @@
 				F8B4F11920B71D51004EE642 /* AppDelegate.swift in Sources */,
 				F884E6FA20BDE10A0068FB65 /* JDLAudioPlayer.swift in Sources */,
 				F83D1B0620BB0E0700253523 /* JDLTabBar.swift in Sources */,
-				F884E70020BDF9280068FB65 /* RequestSource.swift in Sources */,
 				F80C9AD920BCBFFC00846726 /* JDLYoutubeWebViewController.swift in Sources */,
 				F83D1B0A20BB1A2D00253523 /* PlaylistTableViewCell.swift in Sources */,
 				F847233F20BB248200BB8BD2 /* UIViewController+DismissKeyboard.swift in Sources */,
@@ -290,6 +291,7 @@
 				F82C55F620BB908A00B3D112 /* NSObject+ClassNameSegue.swift in Sources */,
 				F82C55F420BB89E200B3D112 /* JDLPlaylistTabBarItem.swift in Sources */,
 				F847233D20BB226900BB8BD2 /* JDLDownloadViewController.swift in Sources */,
+				F818D27220C0AC9700B544B5 /* JDLNowPlayingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,41 +14,72 @@
         <!--Now Playing-->
         <scene sceneID="yvO-Vb-5rp">
             <objects>
-                <viewController id="oq1-Gf-F9u" sceneMemberID="viewController">
+                <viewController id="oq1-Gf-F9u" customClass="JDLNowPlayingViewController" customModule="jutubeDL" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cZ0-XN-Nli">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="frp-mq-pa4">
-                                <rect key="frame" x="249" y="512" width="43" height="43"/>
+                                <rect key="frame" x="261" y="552" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="next"/>
+                                <connections>
+                                    <action selector="nextTrackButtonPressed:" destination="oq1-Gf-F9u" eventType="touchUpInside" id="z81-43-fwJ"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w1h-Cu-gxb">
-                                <rect key="frame" x="324" y="516" width="35" height="35"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w1h-Cu-gxb">
+                                <rect key="frame" x="340" y="559" width="17" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="repeat"/>
+                                <connections>
+                                    <action selector="repeatButtonPressed:" destination="oq1-Gf-F9u" eventType="touchUpInside" id="62G-4t-2EL"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ha-DV-JMV">
-                                <rect key="frame" x="83" y="512" width="43" height="43"/>
+                                <rect key="frame" x="86" y="552" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="previous"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZOB-dn-oAb">
-                                <rect key="frame" x="16" y="516" width="35" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="shuffle"/>
+                                <connections>
+                                    <action selector="previousButtonPressed:" destination="oq1-Gf-F9u" eventType="touchUpInside" id="XK5-iq-y3M"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YnY-be-E0i">
-                                <rect key="frame" x="134" y="480" width="107" height="107"/>
+                                <rect key="frame" x="151" y="529" width="76" height="76"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="play"/>
+                                <connections>
+                                    <action selector="playPauseButtonPressed:" destination="oq1-Gf-F9u" eventType="touchUpInside" id="mnx-d5-w8W"/>
+                                </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZOB-dn-oAb">
+                                <rect key="frame" x="18" y="559" width="17" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="shuffle"/>
+                                <connections>
+                                    <action selector="shuffleButtonPressed:" destination="oq1-Gf-F9u" eventType="touchUpInside" id="KN5-as-tLa"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="default-album-image" translatesAutoresizingMaskIntoConstraints="NO" id="880-HA-cj9">
+                                <rect key="frame" x="16" y="58" width="341" height="317"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Song Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfr-hH-X7r">
+                                <rect key="frame" x="18" y="427" width="339" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="OFQ-LW-t5w"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Now Playing" id="yFm-Gl-qMt"/>
+                    <tabBarItem key="tabBarItem" title="Now Playing" image="TabBarNowPlaying" id="yFm-Gl-qMt"/>
+                    <connections>
+                        <outlet property="albumArtImage" destination="880-HA-cj9" id="hww-pf-aqn"/>
+                        <outlet property="playPauseButton" destination="YnY-be-E0i" id="LkK-vf-7px"/>
+                        <outlet property="songNameLabel" destination="xfr-hH-X7r" id="dzA-Ub-WFU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u4A-EP-0UP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -160,7 +191,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pMK-vg-V3j"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Playlist" image="playlistIcon" id="fOK-Bg-8xP" customClass="JDLPlaylistTabBarItem" customModule="jutubeDL" customModuleProvider="target"/>
+                    <tabBarItem key="tabBarItem" title="Playlist" image="TabBarplaylistIcon" id="fOK-Bg-8xP" customClass="JDLPlaylistTabBarItem" customModule="jutubeDL" customModuleProvider="target"/>
                     <connections>
                         <outlet property="tableView" destination="zaU-vj-mqr" id="IXR-BD-yNl"/>
                     </connections>
@@ -210,6 +241,13 @@
                                     <segue destination="z8X-YV-bFU" kind="presentation" id="JfV-xA-Le3"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7eY-Xy-ZpP">
+                                <rect key="frame" x="275" y="136" width="36" height="30"/>
+                                <state key="normal" title="Clear"/>
+                                <connections>
+                                    <action selector="clearButtonPressed:" destination="z9X-yF-Bi0" eventType="touchUpInside" id="wH3-AN-zP8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -222,6 +260,8 @@
                             <constraint firstItem="xDA-uh-6oS" firstAttribute="top" secondItem="LR0-4X-pWu" secondAttribute="bottom" constant="84" id="Vug-MP-LGd"/>
                             <constraint firstItem="xDA-uh-6oS" firstAttribute="leading" secondItem="tg7-4k-A18" secondAttribute="leading" id="ZzD-zm-xtF"/>
                             <constraint firstItem="LR0-4X-pWu" firstAttribute="top" secondItem="Awx-Dr-M3E" secondAttribute="top" constant="156" id="bXZ-iH-uWi"/>
+                            <constraint firstItem="7eY-Xy-ZpP" firstAttribute="top" secondItem="tg7-4k-A18" secondAttribute="top" id="mm7-Ny-Lk9"/>
+                            <constraint firstItem="7eY-Xy-ZpP" firstAttribute="leading" secondItem="tg7-4k-A18" secondAttribute="trailing" constant="13" id="slX-YM-fC9"/>
                             <constraint firstItem="T29-U8-QZf" firstAttribute="centerX" secondItem="ZpU-QL-reh" secondAttribute="centerX" id="u71-Yt-zp9"/>
                             <constraint firstItem="xDA-uh-6oS" firstAttribute="leading" secondItem="ZpU-QL-reh" secondAttribute="leadingMargin" constant="96" id="v7P-vH-mT1"/>
                         </constraints>
@@ -260,9 +300,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="TabBarNowPlaying" width="25" height="25"/>
+        <image name="TabBarplaylistIcon" width="25" height="25"/>
+        <image name="default-album-image" width="256" height="256"/>
         <image name="next" width="256" height="256"/>
         <image name="play" width="256" height="256"/>
-        <image name="playlistIcon" width="25" height="25"/>
         <image name="previous" width="256" height="256"/>
         <image name="repeat" width="256" height="256"/>
         <image name="shuffle" width="256" height="256"/>

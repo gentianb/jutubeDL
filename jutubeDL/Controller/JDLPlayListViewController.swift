@@ -49,7 +49,7 @@ extension JDLPlayListViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! PlaylistTableViewCell
-        let audioData = instance.getNameAndAlbumart(indexPath.row)
+        let audioData = instance.getAudioFile(for: indexPath.row)
         cell.updateCellView(with: audioData.name, and: audioData.albumart)
         return cell
         }
