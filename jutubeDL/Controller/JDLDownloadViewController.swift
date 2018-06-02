@@ -12,6 +12,12 @@ import SwiftyJSON
 
 
 class JDLDownloadViewController: UIViewController {
+    
+    
+    @IBOutlet weak var urlTextField: UITextField!
+    @IBOutlet weak var downloadButton: UIButton!
+    @IBOutlet weak var songNameLabel: UILabel!
+    @IBOutlet weak var progressView: UIProgressView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,18 +29,16 @@ class JDLDownloadViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     @IBAction func clearButtonPressed(_ sender: Any) {
         urlTextField.text = nil
     }
     
-    @IBOutlet weak var urlTextField: UITextField!
-    @IBOutlet weak var downloadButton: UIButton!
-    @IBOutlet weak var songNameLabel: UILabel!
-    @IBOutlet weak var progressView: UIProgressView!
-
     @IBAction func downloadPressed(_ sender: Any) {
-        fetchDownloadLink()
+        if urlTextField.text != ""{
+            fetchDownloadLink()
+        }
+
     }
     /*
     // MARK: - Navigation
@@ -46,9 +50,25 @@ class JDLDownloadViewController: UIViewController {
     }
     */
     
-    func preTest(audioUrl : String, audioName: String){
+    func fetchDownloadLink(){
+        print("Starting")
+        Alamofire.request("http://www.convertmp3.io/fetch/?format=JSON&video=\(urlTextField.text!)").responseJSON { (response) in
+            if response.result.isSuccess{
+                print(response.result.value!)
+                let resjson : JSON = JSON(response.result.value!)
+                print(resjson["title"].string!)
+                self.songNameLabel.text = resjson["title"].string!
+                //self.downloadfromURL()
+                self.startDownload(audioUrl: resjson["link"].string!, audioName: "\(resjson["title"].string!).mp3")
+            }else{
+                print(response.result.error!)
+            }
+        }
+    }
+    
+    func startDownload(audioUrl : String, audioName: String){
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let fileUrl = documentsURL.appendingPathComponent("\(audioName)")
+        let fileUrl = documentsURL.appendingPathComponent("\(audioName.replacingOccurrences(of: "/", with: ""))")
         let destination: DownloadRequest.DownloadFileDestination = { _, _ in
             return (fileUrl, [.removePreviousFile])
         }
@@ -62,6 +82,7 @@ class JDLDownloadViewController: UIViewController {
             .response { (data) in
                 if data.error != nil{
                     print(data.error!.localizedDescription)
+                    
                 }else{
                     print(data.destinationURL!.path)
                     print("DL Completed")
@@ -70,20 +91,6 @@ class JDLDownloadViewController: UIViewController {
         }
     }
     
-    func fetchDownloadLink(){
-        print("Starting")
-        Alamofire.request("http://www.convertmp3.io/fetch/?format=JSON&video=\(urlTextField.text!)").responseJSON { (response) in
-            if response.result.isSuccess{
-                print(response.result.value!)
-                let resjson : JSON = JSON(response.result.value!)
-                print(resjson["title"].string!)
-                self.songNameLabel.text = resjson["title"].string!
-                //self.downloadfromURL()
-                self.preTest(audioUrl: resjson["link"].string!, audioName: "\(resjson["title"].string!).mp3")
-            }else{
-                print(response.result.error!)
-            }
-        }
-    }
+
 
 }

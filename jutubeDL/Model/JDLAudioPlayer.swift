@@ -58,6 +58,7 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
         return UIImage(named: "default-album-image")!
     }
     //MARK: - Get audioPlayer
+    
     func getAudioFile(for index: Int) -> JDLAudioFile{
         return audioFiles[index]
     }
@@ -75,13 +76,30 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
             return player.isPlaying
         }
     }
+    var getCurrentAudioTime: TimeInterval{
+        get{
+            guard let player = player else{ return 0 }
+            return player.currentTime
+        }
+    }
+    var getCurrentAudioDuration: TimeInterval{
+        get{
+            guard let player = player else{ return 0 }
+            return player.duration
+        }
+    }
+    
     //MARK: - Audio Player
     
     @objc func togglePlayResume(){
+        guard let player = player else {
+            play(with: 0)
+            return
+        }
         if isPlaying{
-            player?.pause()
+            player.pause()
         }else{
-            player?.play()
+            player.play()
         }
     }
     @objc func next(){
@@ -153,6 +171,11 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
         } catch {
             print("AVAudioPlayer init failed")
         }
+    }
+    
+    func playAt(set time: Float){
+        let currentTime = TimeInterval(time * Float(getCurrentAudioDuration))
+        player?.currentTime = currentTime
     }
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
