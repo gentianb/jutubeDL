@@ -8,7 +8,7 @@
 
 import UIKit
 
-class JDLPlayListViewController: UIViewController {
+class JDLAudioFilesViewController: UIViewController {
     
     let instance = JDLAudioPlayer.instance
     @IBOutlet weak var tableView: UITableView!
@@ -39,7 +39,7 @@ class JDLPlayListViewController: UIViewController {
     }
 
 }
-extension JDLPlayListViewController: UITableViewDelegate, UITableViewDataSource{
+extension JDLAudioFilesViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         localAudioFilesCount = instance.totalAudioFiles
@@ -47,14 +47,14 @@ extension JDLPlayListViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! PlaylistTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! JDLAudioFilesListTableViewCell
         let audioData = instance.getAudioFile(for: indexPath.row)
         cell.updateCellView(with: audioData.name, and: audioData.albumart)
         return cell
         }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        instance.play(with: indexPath.row)
+        instance.play(with: indexPath.row, source: .audioFilesList)
     }
     
     

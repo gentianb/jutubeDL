@@ -104,6 +104,16 @@
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tpc-z9-Epo">
+                                <rect key="frame" x="329" y="39" width="28" height="23"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="23" id="ijl-4o-2CS"/>
+                                </constraints>
+                                <state key="normal" image="playlist"/>
+                                <connections>
+                                    <segue destination="dHW-Mt-adX" kind="show" id="piB-Sl-OyL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.15686274509803921" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -117,6 +127,8 @@
                             <constraint firstAttribute="bottom" secondItem="kMo-Oj-zuX" secondAttribute="bottom" constant="146" id="HsX-20-Z49"/>
                             <constraint firstItem="0ha-DV-JMV" firstAttribute="bottom" secondItem="frp-mq-pa4" secondAttribute="bottom" id="L6I-7C-26U"/>
                             <constraint firstItem="w1h-Cu-gxb" firstAttribute="leading" secondItem="frp-mq-pa4" secondAttribute="trailing" constant="49" id="N0q-BY-KZQ"/>
+                            <constraint firstItem="tpc-z9-Epo" firstAttribute="leading" secondItem="OFQ-LW-t5w" secondAttribute="leading" constant="329" id="PcB-kg-bsa"/>
+                            <constraint firstItem="tpc-z9-Epo" firstAttribute="trailing" secondItem="880-HA-cj9" secondAttribute="trailing" id="QSN-5l-xyc"/>
                             <constraint firstItem="kMo-Oj-zuX" firstAttribute="top" secondItem="xfr-hH-X7r" secondAttribute="bottom" constant="62" id="Siz-KQ-C60"/>
                             <constraint firstItem="w1h-Cu-gxb" firstAttribute="top" secondItem="ZOB-dn-oAb" secondAttribute="top" id="VxA-07-yCc"/>
                             <constraint firstItem="kMo-Oj-zuX" firstAttribute="leading" secondItem="OFQ-LW-t5w" secondAttribute="leading" constant="18" id="Ycn-E8-3e7"/>
@@ -135,6 +147,7 @@
                             <constraint firstItem="YnY-be-E0i" firstAttribute="top" secondItem="kMo-Oj-zuX" secondAttribute="bottom" constant="8" symbolic="YES" id="uEb-g6-GWZ"/>
                             <constraint firstItem="OFQ-LW-t5w" firstAttribute="trailing" secondItem="hth-c1-1c7" secondAttribute="trailing" constant="16" id="uek-Wa-Vlp"/>
                             <constraint firstItem="w1h-Cu-gxb" firstAttribute="bottom" secondItem="ZOB-dn-oAb" secondAttribute="bottom" id="v88-j0-tXc"/>
+                            <constraint firstItem="tpc-z9-Epo" firstAttribute="top" secondItem="OFQ-LW-t5w" secondAttribute="top" constant="19" id="vV4-zd-tWj"/>
                             <constraint firstItem="w1h-Cu-gxb" firstAttribute="top" secondItem="kMo-Oj-zuX" secondAttribute="bottom" constant="38" id="vpH-z3-tCx"/>
                             <constraint firstItem="frp-mq-pa4" firstAttribute="leading" secondItem="YnY-be-E0i" secondAttribute="trailing" constant="34" id="xHn-bw-S7V"/>
                             <constraint firstItem="hth-c1-1c7" firstAttribute="top" secondItem="xfr-hH-X7r" secondAttribute="bottom" constant="51" id="xxw-Ez-phW"/>
@@ -149,6 +162,8 @@
                         <outlet property="audioSlider" destination="kMo-Oj-zuX" id="TZM-uK-YZt"/>
                         <outlet property="currentAudioTimeLabel" destination="ovJ-Hd-XBu" id="84f-mu-Hn6"/>
                         <outlet property="playPauseButton" destination="YnY-be-E0i" id="LkK-vf-7px"/>
+                        <outlet property="repeatButton" destination="w1h-Cu-gxb" id="Gi0-Tf-Ra7"/>
+                        <outlet property="shuffleButton" destination="ZOB-dn-oAb" id="nAN-4X-wON"/>
                         <outlet property="songNameLabel" destination="xfr-hH-X7r" id="dzA-Ub-WFU"/>
                         <outlet property="totalAudioTimeLabel" destination="hth-c1-1c7" id="UqZ-i4-35S"/>
                     </connections>
@@ -156,6 +171,75 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u4A-EP-0UP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2316" y="1130.2848575712144"/>
+        </scene>
+        <!--Now Playing List View Controller-->
+        <scene sceneID="BFx-Lv-4fa">
+            <objects>
+                <viewController id="dHW-Mt-adX" customClass="JDLNowPlayingListViewController" customModule="jutubeDL" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HMC-LH-qg2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6Dg-mh-KLR">
+                                <rect key="frame" x="0.0" y="87" width="375" height="580"/>
+                                <color key="backgroundColor" red="0.15686274509803921" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="LCV-DT-PA9" customClass="JDLNowPlayingListTableViewCell" customModule="jutubeDL" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LCV-DT-PA9" id="MWW-Uf-zYc">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n9A-qW-gRM">
+                                                    <rect key="frame" x="14" y="9" width="347" height="24"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="17"/>
+                                                    <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.15686274509803921" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="n9A-qW-gRM" firstAttribute="bottom" secondItem="MWW-Uf-zYc" secondAttribute="bottomMargin" id="7W5-iG-tf1"/>
+                                                <constraint firstItem="n9A-qW-gRM" firstAttribute="centerX" secondItem="MWW-Uf-zYc" secondAttribute="centerX" id="iYu-qu-wsg"/>
+                                                <constraint firstItem="n9A-qW-gRM" firstAttribute="leading" secondItem="MWW-Uf-zYc" secondAttribute="leadingMargin" constant="-1" id="xBc-FO-H9T"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nameLabel" destination="n9A-qW-gRM" id="wYV-Vn-PF6"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VyX-99-mQz">
+                                <rect key="frame" x="303" y="33" width="60" height="36"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
+                                <state key="normal" title="Dismiss">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismissButtonPressed:" destination="dHW-Mt-adX" eventType="touchUpInside" id="30h-GC-fae"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.15686274509803921" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Dg-mh-KLR" firstAttribute="bottom" secondItem="4JQ-UQ-u8a" secondAttribute="bottom" id="2YJ-Mr-sIi"/>
+                            <constraint firstItem="6Dg-mh-KLR" firstAttribute="top" secondItem="4JQ-UQ-u8a" secondAttribute="top" constant="67" id="Edy-0P-nfc"/>
+                            <constraint firstItem="6Dg-mh-KLR" firstAttribute="leading" secondItem="HMC-LH-qg2" secondAttribute="leading" id="LWk-tJ-esg"/>
+                            <constraint firstAttribute="trailing" secondItem="6Dg-mh-KLR" secondAttribute="trailing" id="RTL-mr-ks0"/>
+                            <constraint firstItem="VyX-99-mQz" firstAttribute="top" secondItem="4JQ-UQ-u8a" secondAttribute="top" constant="13" id="oou-94-htQ"/>
+                            <constraint firstItem="VyX-99-mQz" firstAttribute="leading" secondItem="4JQ-UQ-u8a" secondAttribute="leading" constant="303" id="pjX-AH-6sw"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="4JQ-UQ-u8a"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="6Dg-mh-KLR" id="SpH-d1-K8q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5GH-y1-asu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2316" y="1908.3958020989508"/>
         </scene>
         <!--Youtube Web View Controller-->
         <scene sceneID="pp5-mc-Ao5">
@@ -198,7 +282,7 @@
         <!--Playlist-->
         <scene sceneID="mL2-ra-Zca">
             <objects>
-                <viewController storyboardIdentifier="JDLPlayListViewController" id="9OC-6y-HD1" customClass="JDLPlayListViewController" customModule="jutubeDL" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="JDLPlayListViewController" id="9OC-6y-HD1" customClass="JDLAudioFilesViewController" customModule="jutubeDL" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3uC-XZ-6Km">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -208,7 +292,7 @@
                                 <color key="backgroundColor" red="0.15686274509803921" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="separatorColor" red="0.15686274510000001" green="0.15686274510000001" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="80" id="po9-AT-ehn" customClass="PlaylistTableViewCell" customModule="jutubeDL" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="80" id="po9-AT-ehn" customClass="JDLAudioFilesListTableViewCell" customModule="jutubeDL" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="po9-AT-ehn" id="zpc-nV-K8u">
@@ -390,6 +474,7 @@
         <image name="default-album-image" width="256" height="256"/>
         <image name="next" width="256" height="256"/>
         <image name="play" width="256" height="256"/>
+        <image name="playlist" width="256" height="256"/>
         <image name="previous" width="256" height="256"/>
         <image name="repeat" width="256" height="256"/>
         <image name="shuffle" width="256" height="256"/>

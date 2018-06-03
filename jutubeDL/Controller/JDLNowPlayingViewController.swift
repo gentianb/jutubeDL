@@ -10,6 +10,8 @@ import UIKit
 
 class JDLNowPlayingViewController: UIViewController, JDLNowPlayingVCDelegate {
 
+    
+
     private let instance = JDLAudioPlayer.instance
     
     var transitionStyle = UIViewAnimationOptions.transitionCrossDissolve
@@ -21,7 +23,9 @@ class JDLNowPlayingViewController: UIViewController, JDLNowPlayingVCDelegate {
     @IBOutlet weak var currentAudioTimeLabel: UILabel!
     @IBOutlet weak var totalAudioTimeLabel: UILabel!
     @IBOutlet weak var audioSlider: UISlider!
-
+    @IBOutlet weak var shuffleButton: UIButton!
+    @IBOutlet weak var repeatButton: UIButton!
+    
     
     
     override func viewDidLoad() {
@@ -41,7 +45,7 @@ class JDLNowPlayingViewController: UIViewController, JDLNowPlayingVCDelegate {
         
         instance.jdlNowPlayingVCDelegate = self
         
-        updateNowPlaying()
+        updateNowPlaying(JDLListSource.nowPlayingList)
         startUpdatingSliderAndAudioTime()
     }
     
@@ -80,21 +84,57 @@ class JDLNowPlayingViewController: UIViewController, JDLNowPlayingVCDelegate {
         transitionStyle = .transitionFlipFromLeft
         instance.previous()
     }
-    //TODO: Implement shuffle logic
-    @IBAction func repeatButtonPressed(_ sender: Any) {
-    }
+    //MARK: Shuffle
     
     @IBAction func shuffleButtonPressed(_ sender: Any) {
+        checkShuffleState(instance.isShuffled)
+    }
+    
+    private func checkShuffleState(_ state: Bool){
+        if state{
+            instance.setShuffleStatus(!state)
+            shuffleButton.setImage(UIImage(named: "shuffle"), for: .normal)
+        }else{
+            instance.setShuffleStatus(!state)
+            shuffleButton.setImage(UIImage(named: "shuffle_on"), for: .normal)
+        }
+    }
+    //MARK: Loop
+    
+    @IBAction func repeatButtonPressed(_ sender: Any) {
+        checkLoopState()
+    }
+    private func checkLoopState(){
+        switch instance.getLoopState {
+        case .none:
+            instance.setLoopState(.all)
+            repeatButton.setImage(UIImage(named: "repeat_all"), for: .normal)
+        case .all:
+            instance.setLoopState(.one)
+            repeatButton.setImage(UIImage(named: "repeat_one"), for: .normal)
+        case .one:
+            instance.setLoopState(.none)
+            repeatButton.setImage(UIImage(named: "repeat"), for: .normal)
+        }
+        print(instance.getLoopState)
     }
     
     //MARK: - Protocol Function
     
-    func callUpdateViews() {
-        updateNowPlaying()
+    func callUpdateViews(_ source: JDLListSource) {
+        updateNowPlaying(source)
     }
+
     //MARK: Update UI
-    func updateNowPlaying(){
-        let audioFile = instance.getCurrentAudioFile()
+    func updateNowPlaying(_ source: JDLListSource){
+        var audioFile: JDLAudioFile
+        
+        switch source {
+        case .nowPlayingList:
+             audioFile = instance.getCurrentPlayListFile()
+        case .audioFilesList:
+             audioFile = instance.getCurrentAudioFile()
+        }
         songNameLabel.text = audioFile.name
         updatePlayPauseButton()
         
@@ -140,5 +180,5 @@ class JDLNowPlayingViewController: UIViewController, JDLNowPlayingVCDelegate {
 }
 
 protocol JDLNowPlayingVCDelegate{
-    func callUpdateViews()
+    func callUpdateViews(_ source: JDLListSource)
 }

@@ -78,6 +78,7 @@ class JDLDownloadViewController: UIViewController {
                 }
                 if progress.fractionCompleted == 1.0{
                     self.progressLabel.text = "Download Completed"
+                    UINotificationFeedbackGenerator().notificationOccurred(.success)
                 }
             }
             .response { (data) in

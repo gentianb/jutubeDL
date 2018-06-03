@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PlaylistTableViewCell: UITableViewCell {
+class JDLAudioFilesListTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
