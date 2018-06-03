@@ -227,6 +227,7 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
     }
     
     func play(with index: Int, source: JDLListSource) {
+        currentlyPlaying = index
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
             try AVAudioSession.sharedInstance().setActive(true)

@@ -49,6 +49,10 @@ class JDLDownloadViewController: UIViewController {
             if response.result.isSuccess{
                 print(response.result.value!)
                 let resjson : JSON = JSON(response.result.value!)
+                if resjson["error"].string != nil{
+                    self.progressLabel.text = "Invalid URL"
+                    return
+                }
                 print(resjson["title"].string!)
                 self.songNameLabel.text = resjson["title"].string!
                 //self.downloadfromURL()
