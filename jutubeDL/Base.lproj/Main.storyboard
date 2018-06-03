@@ -105,7 +105,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.15686274509803921" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="kMo-Oj-zuX" firstAttribute="trailing" secondItem="880-HA-cj9" secondAttribute="trailing" id="20d-Qt-gmk"/>
                             <constraint firstItem="ovJ-Hd-XBu" firstAttribute="top" secondItem="xfr-hH-X7r" secondAttribute="bottom" constant="51" id="6NY-5d-QXP"/>
@@ -205,7 +205,8 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zaU-vj-mqr">
                                 <rect key="frame" x="0.0" y="65" width="375" height="553"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.15686274509803921" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="separatorColor" red="0.15686274510000001" green="0.15686274510000001" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="80" id="po9-AT-ehn" customClass="PlaylistTableViewCell" customModule="jutubeDL" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="80"/>
@@ -219,8 +220,8 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="207" id="8dB-I9-2Ex"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="17"/>
+                                                    <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bGU-xD-TVk">
@@ -237,6 +238,7 @@
                                                 <constraint firstItem="yQC-0p-sBi" firstAttribute="centerY" secondItem="bGU-xD-TVk" secondAttribute="centerY" id="mIs-gz-lbg"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.15686274509803921" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="artWorkImage" destination="bGU-xD-TVk" id="F3n-4T-q8I"/>
                                             <outlet property="nameLabel" destination="yQC-0p-sBi" id="qnI-Aj-XAA"/>
@@ -245,13 +247,13 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Songs:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q34-lW-t9X">
-                                <rect key="frame" x="16" y="36" width="53" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="16" y="33.5" width="52" height="23.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.15686274509803921" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="zaU-vj-mqr" firstAttribute="leading" secondItem="pMK-vg-V3j" secondAttribute="leading" id="3R0-S9-JnX"/>
@@ -286,21 +288,29 @@
                                     <constraint firstAttribute="height" constant="63" id="ayq-PH-acd"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xDA-uh-6oS">
                                 <rect key="frame" x="112" y="323" width="150" height="2"/>
                             </progressView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter YT URL" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tg7-4k-A18">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter YT URL" textAlignment="center" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="tg7-4k-A18">
                                 <rect key="frame" x="112" y="136" width="150" height="30"/>
-                                <nil key="textColor"/>
+                                <color key="backgroundColor" red="0.15686274509803921" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="urlTextField.textColor">
+                                        <color key="value" white="0.73611111111111116" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T29-U8-QZf">
                                 <rect key="frame" x="129" y="247" width="116" height="30"/>
-                                <state key="normal" title="Download &amp; Play"/>
+                                <state key="normal" title="Download &amp; Play">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="downloadPressed:" destination="z9X-yF-Bi0" eventType="touchUpInside" id="dTI-ot-xJF"/>
                                 </connections>
@@ -308,32 +318,34 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3C3-QX-HmV">
                                 <rect key="frame" x="16" y="20" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <segue destination="z8X-YV-bFU" kind="presentation" id="JfV-xA-Le3"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7eY-Xy-ZpP">
-                                <rect key="frame" x="275" y="136" width="36" height="30"/>
-                                <state key="normal" title="Clear"/>
-                                <connections>
-                                    <action selector="clearButtonPressed:" destination="z9X-yF-Bi0" eventType="touchUpInside" id="wH3-AN-zP8"/>
-                                </connections>
-                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uYJ-sJ-1KF">
+                                <rect key="frame" x="0.0" y="333" width="375" height="0.0"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.15686274509803921" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="LR0-4X-pWu" firstAttribute="top" secondItem="T29-U8-QZf" secondAttribute="bottom" constant="-101" id="DWx-DB-oHP"/>
                             <constraint firstItem="Awx-Dr-M3E" firstAttribute="trailing" secondItem="LR0-4X-pWu" secondAttribute="trailing" constant="70" id="JOV-IV-ekC"/>
                             <constraint firstItem="LR0-4X-pWu" firstAttribute="top" secondItem="tg7-4k-A18" secondAttribute="bottom" constant="10" id="Jxt-qE-5Ma"/>
+                            <constraint firstItem="uYJ-sJ-1KF" firstAttribute="centerX" secondItem="xDA-uh-6oS" secondAttribute="centerX" id="Np4-AO-Fad"/>
                             <constraint firstItem="LR0-4X-pWu" firstAttribute="centerX" secondItem="xDA-uh-6oS" secondAttribute="centerX" id="Pd0-Cq-nrR"/>
                             <constraint firstItem="LR0-4X-pWu" firstAttribute="centerX" secondItem="T29-U8-QZf" secondAttribute="centerX" id="QHR-Zy-8DE"/>
+                            <constraint firstItem="uYJ-sJ-1KF" firstAttribute="leading" secondItem="ZpU-QL-reh" secondAttribute="leading" id="V5y-vY-phU"/>
                             <constraint firstItem="LR0-4X-pWu" firstAttribute="centerX" secondItem="tg7-4k-A18" secondAttribute="centerX" id="VQV-sj-o9r"/>
                             <constraint firstItem="xDA-uh-6oS" firstAttribute="top" secondItem="LR0-4X-pWu" secondAttribute="bottom" constant="84" id="Vug-MP-LGd"/>
                             <constraint firstItem="xDA-uh-6oS" firstAttribute="leading" secondItem="tg7-4k-A18" secondAttribute="leading" id="ZzD-zm-xtF"/>
                             <constraint firstItem="LR0-4X-pWu" firstAttribute="top" secondItem="Awx-Dr-M3E" secondAttribute="top" constant="156" id="bXZ-iH-uWi"/>
-                            <constraint firstItem="7eY-Xy-ZpP" firstAttribute="top" secondItem="tg7-4k-A18" secondAttribute="top" id="mm7-Ny-Lk9"/>
-                            <constraint firstItem="7eY-Xy-ZpP" firstAttribute="leading" secondItem="tg7-4k-A18" secondAttribute="trailing" constant="13" id="slX-YM-fC9"/>
+                            <constraint firstItem="uYJ-sJ-1KF" firstAttribute="top" secondItem="xDA-uh-6oS" secondAttribute="bottom" constant="8" symbolic="YES" id="lSS-Ih-Q3m"/>
                             <constraint firstItem="T29-U8-QZf" firstAttribute="centerX" secondItem="ZpU-QL-reh" secondAttribute="centerX" id="u71-Yt-zp9"/>
                             <constraint firstItem="xDA-uh-6oS" firstAttribute="leading" secondItem="ZpU-QL-reh" secondAttribute="leadingMargin" constant="96" id="v7P-vH-mT1"/>
                         </constraints>
@@ -342,6 +354,7 @@
                     <tabBarItem key="tabBarItem" systemItem="downloads" id="bN9-Od-6dX"/>
                     <connections>
                         <outlet property="downloadButton" destination="T29-U8-QZf" id="eQ7-I0-yW5"/>
+                        <outlet property="progressLabel" destination="uYJ-sJ-1KF" id="2qf-Tq-TJr"/>
                         <outlet property="progressView" destination="xDA-uh-6oS" id="vg5-Se-D1X"/>
                         <outlet property="songNameLabel" destination="LR0-4X-pWu" id="xMt-DK-cCd"/>
                         <outlet property="urlTextField" destination="tg7-4k-A18" id="uZM-XS-8jL"/>
@@ -349,13 +362,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1ym-7f-zSr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2371" y="255"/>
+            <point key="canvasLocation" x="2370.4000000000001" y="254.12293853073464"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="rWy-0g-bCS">
             <objects>
                 <tabBarController id="AJA-Ab-e4G" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Akm-rC-n6H" customClass="JDLTabBar" customModule="jutubeDL" customModuleProvider="target">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="Akm-rC-n6H" customClass="JDLTabBar" customModule="jutubeDL" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

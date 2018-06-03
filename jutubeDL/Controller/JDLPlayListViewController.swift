@@ -31,7 +31,6 @@ class JDLPlayListViewController: UIViewController {
         if localAudioFilesCount != instance.totalAudioFiles{
             tableView.reloadData()
         }
-
     }
 
     override func didReceiveMemoryWarning() {

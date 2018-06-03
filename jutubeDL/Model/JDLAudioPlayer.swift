@@ -57,13 +57,28 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
         }
         return UIImage(named: "default-album-image")!
     }
+    //MARK: Fetch list state
+    var isListEmpty: Bool{
+        get{
+            if audioFiles.isEmpty{
+                return true
+            }else {
+                return false
+            }
+        }
+    }
+    
     //MARK: - Get audioPlayer
     
     func getAudioFile(for index: Int) -> JDLAudioFile{
         return audioFiles[index]
     }
     func getCurrentAudioFile() -> JDLAudioFile{
-        return audioFiles[currentlyPlaying]
+        if audioFiles.isEmpty{
+            return JDLAudioFile(path: URL(string: "test")!, albumart: #imageLiteral(resourceName: "default-album-image"))
+        }else{
+            return audioFiles[currentlyPlaying]
+        }
     }
     var totalAudioFiles: Int{
         get{
@@ -91,7 +106,7 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
     
     //MARK: - Audio Player
     
-    @objc func togglePlayResume(){
+    @objc func togglePlayPause(){
         guard let player = player else {
             play(with: 0)
             return
@@ -127,7 +142,10 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
         }
     }
     @objc func previous(){
-        if currentlyPlaying > 0  {
+        
+        if Int(getCurrentAudioTime) >= 3{
+            player!.currentTime = 0
+        }else if currentlyPlaying > 0  {
             do {
                 print("INSIDE NEXT")
                 try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
@@ -150,7 +168,6 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
     }
     
     func play(with index: Int) {
-        //print("playing \(url)")
         currentlyPlaying = index
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
@@ -174,8 +191,10 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
     }
     
     func playAt(set time: Float){
+        guard let player = player else {return}
         let currentTime = TimeInterval(time * Float(getCurrentAudioDuration))
-        player?.currentTime = currentTime
+        player.currentTime = currentTime
+        updateMediaCenter(currentlyPlaying, duration: player.duration)
     }
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
@@ -192,8 +211,8 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
         
         let commandCenter = MPRemoteCommandCenter.shared()
 
-        commandCenter.playCommand.addTarget(self, action: #selector(togglePlayResume))
-        commandCenter.pauseCommand.addTarget(self, action: #selector(togglePlayResume))
+        commandCenter.playCommand.addTarget(self, action: #selector(togglePlayPause))
+        commandCenter.pauseCommand.addTarget(self, action: #selector(togglePlayPause))
         commandCenter.nextTrackCommand.addTarget(self, action: #selector(next))
         commandCenter.previousTrackCommand.addTarget(self, action: #selector(previous))
     }
@@ -207,6 +226,7 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
                                                            MPMediaItemPropertyArtwork : artwork,
                                                            MPMediaItemPropertyArtist : audioFiles[index].name,
                                                            MPMediaItemPropertyPlaybackDuration : duration,
-                                                           MPNowPlayingInfoPropertyPlaybackRate : NSNumber(value: 1.0)]
+                                                           MPNowPlayingInfoPropertyPlaybackRate : NSNumber(value: 1.0),
+                                                           MPNowPlayingInfoPropertyElapsedPlaybackTime : Int(getCurrentAudioTime)]
     }
 }

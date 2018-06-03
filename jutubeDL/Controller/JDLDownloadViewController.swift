@@ -18,38 +18,31 @@ class JDLDownloadViewController: UIViewController {
     @IBOutlet weak var downloadButton: UIButton!
     @IBOutlet weak var songNameLabel: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
-
+    @IBOutlet weak var progressLabel: UILabel!
+    
+    let instance = JDLAudioPlayer.instance
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedOutsideOfTxtFields()
         // Do any additional setup after loading the view.
+        urlTextField.attributedPlaceholder = NSAttributedString(string: "Enter YT URL", attributes: [NSAttributedStringKey.foregroundColor : UIColor.lightGray])
+        
+        setTabBarItemsState(instance.isListEmpty)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    @IBAction func clearButtonPressed(_ sender: Any) {
-        urlTextField.text = nil
-    }
     
     @IBAction func downloadPressed(_ sender: Any) {
         if urlTextField.text != ""{
             fetchDownloadLink()
         }
-
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
+    //MARK: - Networking
     func fetchDownloadLink(){
         print("Starting")
         Alamofire.request("http://www.convertmp3.io/fetch/?format=JSON&video=\(urlTextField.text!)").responseJSON { (response) in
@@ -61,7 +54,7 @@ class JDLDownloadViewController: UIViewController {
                 //self.downloadfromURL()
                 self.startDownload(audioUrl: resjson["link"].string!, audioName: "\(resjson["title"].string!).mp3")
             }else{
-                print(response.result.error!)
+                self.progressLabel.text = response.error!.localizedDescription
             }
         }
     }
@@ -77,18 +70,33 @@ class JDLDownloadViewController: UIViewController {
         
         Alamofire.download(audioUrl, to:destination)
             .downloadProgress { (progress) in
-                self.progressView.progress = Float(progress.fractionCompleted)
+                if progress.isIndeterminate{
+                    self.progressLabel.text = "Download failed, please try again"
+                }else{
+                    self.progressView.progress = Float(progress.fractionCompleted)
+                    self.progressLabel.text = String(format: "%.2f", progress.fractionCompleted*100)
+                }
+                if progress.fractionCompleted == 1.0{
+                    self.progressLabel.text = "Download Completed"
+                }
             }
             .response { (data) in
                 if data.error != nil{
-                    print(data.error!.localizedDescription)
-                    
+                    self.progressLabel.text =  data.error!.localizedDescription
                 }else{
                     print(data.destinationURL!.path)
                     print("DL Completed")
                     JDLAudioPlayer.instance.fetchAudioFiles()
+                    self.setTabBarItemsState(self.instance.isListEmpty)
                 }
         }
+    }
+    
+    
+    //MARK - UI
+    func setTabBarItemsState(_ state: Bool){
+        self.tabBarController?.tabBar.items![1].isEnabled = !state
+        self.tabBarController?.tabBar.items![2].isEnabled = !state
     }
     
 

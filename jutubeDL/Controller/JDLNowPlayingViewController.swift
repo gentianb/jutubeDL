@@ -7,29 +7,25 @@
 //
 
 import UIKit
-import ChameleonFramework
 
 class JDLNowPlayingViewController: UIViewController, JDLNowPlayingVCDelegate {
 
+    private let instance = JDLAudioPlayer.instance
+    
+    var transitionStyle = UIViewAnimationOptions.transitionCrossDissolve
 
     
-    @IBAction func swiped(_ sender: Any) {
-        print("swiped")
-    }
-    @objc func swipeee(){
-        print("SWIPEEE")
-    }
-    private let instance = JDLAudioPlayer.instance
     @IBOutlet weak var songNameLabel: UILabel!
     @IBOutlet weak var albumArtImage: UIImageView!
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var currentAudioTimeLabel: UILabel!
     @IBOutlet weak var totalAudioTimeLabel: UILabel!
+    @IBOutlet weak var audioSlider: UISlider!
+
+    
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        print("View loaded")
         
         audioSlider.setThumbImage(UIImage(named: "thumb_normal"), for: .normal)
         audioSlider.setThumbImage(UIImage(named: "thumb_selected"), for: .highlighted)
@@ -44,29 +40,72 @@ class JDLNowPlayingViewController: UIViewController, JDLNowPlayingVCDelegate {
         self.view.addGestureRecognizer(rightSwipe)
         
         instance.jdlNowPlayingVCDelegate = self
+        
         updateNowPlaying()
-        
         startUpdatingSliderAndAudioTime()
-
-        // Do any additional setup after loading the view.
-        
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
     }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    //MARK: - Player Buttons
     
+    @IBAction func playPauseButtonPressed(_ sender: Any) {
+        print("Play pause button pressed")
+        instance.togglePlayPause()
+        updatePlayPauseButton()
+    }
+    
+    @IBAction func nextTrackButtonPressed(_ sender: Any) {
+        transitionStyle = .transitionFlipFromRight
+        instance.next()
+    }
+    
+    @objc func _next(){
+        transitionStyle = .transitionFlipFromRight
+        instance.next()
+    }
+    
+    @objc func _previous(){
+        transitionStyle = .transitionFlipFromLeft
+        instance.previous()
+    }
+    
+    @IBAction func previousButtonPressed(_ sender: Any) {
+        transitionStyle = .transitionFlipFromLeft
+        instance.previous()
+    }
+    //TODO: Implement shuffle logic
+    @IBAction func repeatButtonPressed(_ sender: Any) {
+    }
+    
+    @IBAction func shuffleButtonPressed(_ sender: Any) {
+    }
+    
+    //MARK: - Protocol Function
+    
+    func callUpdateViews() {
+        updateNowPlaying()
+    }
+    //MARK: Update UI
     func updateNowPlaying(){
         let audioFile = instance.getCurrentAudioFile()
         songNameLabel.text = audioFile.name
-        albumArtImage.image = audioFile.albumart
         updatePlayPauseButton()
-//        let colorFromImage = ColorsFromImage(albumArtImage.image!, withFlatScheme: true)
-//        view.backgroundColor = UIColor(complementaryFlatColorOf: colorFromImage[2])
+        
+        UIView.transition(with: self.albumArtImage, duration: 0.4, options: transitionStyle, animations: {
+            self.albumArtImage.image = audioFile.albumart
+        }, completion: nil)
     }
+    
     func updatePlayPauseButton(){
         print("updateplaypause button called")
-
+        
         switch instance.isPlaying {
         case true:
             playPauseButton.setImage(UIImage(named: "pause"), for: .normal)
@@ -74,43 +113,13 @@ class JDLNowPlayingViewController: UIViewController, JDLNowPlayingVCDelegate {
             playPauseButton.setImage(UIImage(named: "play"), for: .normal)
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    @IBAction func playPauseButtonPressed(_ sender: Any) {
-        print("Play pause button pressed")
-        instance.togglePlayResume()
-        updatePlayPauseButton()
-
-    }
-    @IBOutlet weak var audioSlider: UISlider!
-    @IBAction func nextTrackButtonPressed(_ sender: Any) {
-        instance.next()
-    }
-    @objc func _next(){
-        instance.next()
-    }
-    @objc func _previous(){
-        instance.previous()
-    }
-    @IBAction func previousButtonPressed(_ sender: Any) {
-        instance.previous()
-    }
-    @IBAction func repeatButtonPressed(_ sender: Any) {
-    }
-    @IBAction func shuffleButtonPressed(_ sender: Any) {
-    }
-    func callUpdateViews() {
-        updateNowPlaying()
-    }
+    
+    //MARK: - Slider Functions
     
     @IBAction func audioSliderDraggingEnded(_ sender: UISlider) {
         instance.playAt(set: sender.value)
     }
-    
-    
+
     func startUpdatingSliderAndAudioTime(){
         let timer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { (time) in
             let sliderValue = self.instance.getCurrentAudioTime / self.instance.getCurrentAudioDuration
@@ -128,9 +137,8 @@ class JDLNowPlayingViewController: UIViewController, JDLNowPlayingVCDelegate {
         }
         timer.fire()
     }
-    
-    
 }
+
 protocol JDLNowPlayingVCDelegate{
     func callUpdateViews()
 }
