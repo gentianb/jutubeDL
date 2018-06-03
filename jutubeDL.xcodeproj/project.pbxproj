@@ -10,10 +10,8 @@
 		C5C173AE2883BA2FA2E21129 /* Pods_jutubeDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41F95CE95121F3A8B618DBAE /* Pods_jutubeDL.framework */; };
 		F80C9AD920BCBFFC00846726 /* JDLYoutubeWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80C9AD820BCBFFC00846726 /* JDLYoutubeWebViewController.swift */; };
 		F818D27220C0AC9700B544B5 /* JDLNowPlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F818D27120C0AC9700B544B5 /* JDLNowPlayingViewController.swift */; };
-		F82C55F420BB89E200B3D112 /* JDLPlaylistTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82C55F320BB89E200B3D112 /* JDLPlaylistTabBarItem.swift */; };
 		F82C55F620BB908A00B3D112 /* NSObject+ClassNameSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82C55F520BB908A00B3D112 /* NSObject+ClassNameSegue.swift */; };
 		F83D1B0420BB0CBB00253523 /* JDLAudioFilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83D1B0320BB0CBB00253523 /* JDLAudioFilesViewController.swift */; };
-		F83D1B0620BB0E0700253523 /* JDLTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83D1B0520BB0E0700253523 /* JDLTabBar.swift */; };
 		F83D1B0A20BB1A2D00253523 /* JDLAudioFilesListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83D1B0920BB1A2D00253523 /* JDLAudioFilesListTableViewCell.swift */; };
 		F84148E520C3F22700CDDC5C /* Collection+Shuffle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84148E420C3F22700CDDC5C /* Collection+Shuffle.swift */; };
 		F84148E720C3FFA500CDDC5C /* JDLLoop.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84148E620C3FFA500CDDC5C /* JDLLoop.swift */; };
@@ -36,10 +34,8 @@
 		C5043994F87566477DA17C29 /* Pods-jutubeDL.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jutubeDL.debug.xcconfig"; path = "Pods/Target Support Files/Pods-jutubeDL/Pods-jutubeDL.debug.xcconfig"; sourceTree = "<group>"; };
 		F80C9AD820BCBFFC00846726 /* JDLYoutubeWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDLYoutubeWebViewController.swift; sourceTree = "<group>"; };
 		F818D27120C0AC9700B544B5 /* JDLNowPlayingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDLNowPlayingViewController.swift; sourceTree = "<group>"; };
-		F82C55F320BB89E200B3D112 /* JDLPlaylistTabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDLPlaylistTabBarItem.swift; sourceTree = "<group>"; };
 		F82C55F520BB908A00B3D112 /* NSObject+ClassNameSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+ClassNameSegue.swift"; sourceTree = "<group>"; };
 		F83D1B0320BB0CBB00253523 /* JDLAudioFilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDLAudioFilesViewController.swift; sourceTree = "<group>"; };
-		F83D1B0520BB0E0700253523 /* JDLTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDLTabBar.swift; sourceTree = "<group>"; };
 		F83D1B0920BB1A2D00253523 /* JDLAudioFilesListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDLAudioFilesListTableViewCell.swift; sourceTree = "<group>"; };
 		F84148E420C3F22700CDDC5C /* Collection+Shuffle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Shuffle.swift"; sourceTree = "<group>"; };
 		F84148E620C3FFA500CDDC5C /* JDLLoop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDLLoop.swift; sourceTree = "<group>"; };
@@ -111,9 +107,7 @@
 		F83D1B0120BB0CA200253523 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F83D1B0520BB0E0700253523 /* JDLTabBar.swift */,
 				F83D1B0920BB1A2D00253523 /* JDLAudioFilesListTableViewCell.swift */,
-				F82C55F320BB89E200B3D112 /* JDLPlaylistTabBarItem.swift */,
 				F80C9AD820BCBFFC00846726 /* JDLYoutubeWebViewController.swift */,
 				F84148EC20C43A9000CDDC5C /* JDLNowPlayingListTableViewCell.swift */,
 			);
@@ -299,7 +293,6 @@
 				F83D1B0420BB0CBB00253523 /* JDLAudioFilesViewController.swift in Sources */,
 				F8B4F11920B71D51004EE642 /* AppDelegate.swift in Sources */,
 				F884E6FA20BDE10A0068FB65 /* JDLAudioPlayer.swift in Sources */,
-				F83D1B0620BB0E0700253523 /* JDLTabBar.swift in Sources */,
 				F80C9AD920BCBFFC00846726 /* JDLYoutubeWebViewController.swift in Sources */,
 				F84148EF20C4408B00CDDC5C /* JDLListSource.swift in Sources */,
 				F83D1B0A20BB1A2D00253523 /* JDLAudioFilesListTableViewCell.swift in Sources */,
@@ -308,7 +301,6 @@
 				F884E6FE20BDE72A0068FB65 /* JDLAudioFile.swift in Sources */,
 				F82C55F620BB908A00B3D112 /* NSObject+ClassNameSegue.swift in Sources */,
 				F84148E720C3FFA500CDDC5C /* JDLLoop.swift in Sources */,
-				F82C55F420BB89E200B3D112 /* JDLPlaylistTabBarItem.swift in Sources */,
 				F84148E520C3F22700CDDC5C /* Collection+Shuffle.swift in Sources */,
 				F847233D20BB226900BB8BD2 /* JDLDownloadViewController.swift in Sources */,
 				F818D27220C0AC9700B544B5 /* JDLNowPlayingViewController.swift in Sources */,
