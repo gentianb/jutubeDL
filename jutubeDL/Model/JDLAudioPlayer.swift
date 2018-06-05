@@ -146,12 +146,21 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
     func setLoopState(_ state: JDLLoop){
         loopStatus = state
     }
+    //MARK: - Handle Remote Events
     
-    
+    func handleRemoteControlEvents(eventType: UIEvent){
+        switch eventType.subtype.rawValue {
+        case 103:
+            togglePlayPause()
+        default:
+            return
+        }
+    }
     
     //MARK: - Audio Player
     
     @objc func togglePlayPause(){
+        print("Toggle method")
         guard let player = player else {
             play(with: 0, source: .audioFilesList)
             return
@@ -162,6 +171,8 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
             player.play()
         }
     }
+    
+    
     
     @objc func next(){
         
@@ -204,6 +215,7 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
         
         if Int(getCurrentAudioTime) >= 3{
             player!.currentTime = 0
+            updateMediaCenter(currentlyPlaying, duration: player!.duration)
         }else if currentlyPlaying > 0  {
             do {
                 print("INSIDE NEXT")

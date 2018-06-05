@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     override func remoteControlReceived(with event: UIEvent?) {
         //calling this function makes the commandCenter functions available to these events
+        JDLAudioPlayer.instance.handleRemoteControlEvents(eventType: event!)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
