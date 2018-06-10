@@ -123,22 +123,9 @@ class JDLDownloadViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     func checkForYTUrl(){
-        guard let ytURL = UIPasteboard.general.string else {
-            print("URL Not available")
-            return
-        }
-        print(ytURL)
+
+        guard let ytURL = UIPasteboard.general.string?.youtubeURL else { return}
         
-        let pattern = "^(https\\:\\/\\/)?(www\\.youtube\\.com|youtu\\.?be)\\/.+$"
-        
-        let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive)
-        let range = NSRange(location: 0, length: ytURL.count)
-        
-        
-        guard let result = regex?.firstMatch(in: ytURL, options: [], range: range) else {
-            print("result couldnt conclude")
-            return
-        }
         if ytURL == lastYoutubeURL{
             print("URL was checked before")
             return
@@ -156,9 +143,9 @@ class JDLDownloadViewController: UIViewController {
     }
 }
 
-extension String{
-    var youtubeID: String? {
-        let pattern = "((?<=(v|V)/)|(?<=be/)|(?<=(\\?|\\&)v=)|(?<=embed/))([\\w-]++)"
+private extension String{
+    var youtubeURL: String? {
+        let pattern = "^(https\\:\\/\\/)?(www\\.youtube\\.com|youtu\\.?be)\\/.+$"
         
         let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive)
         let range = NSRange(location: 0, length: count)
