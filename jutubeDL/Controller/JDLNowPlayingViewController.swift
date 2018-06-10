@@ -169,11 +169,11 @@ class JDLNowPlayingViewController: UIViewController, JDLNowPlayingVCDelegate {
             let currentMinutes = Int(self.instance.getCurrentAudioTime) / 60 % 60
             let currentSeconds = Int(self.instance.getCurrentAudioTime ) % 60
             
-            let totalMinutes = Int(self.instance.getCurrentAudioDuration) / 60 % 60
-            let totalSeconds = Int(self.instance.getCurrentAudioDuration) % 60
+            let totalMinutes = Int(self.instance.getCurrentAudioDuration-self.instance.getCurrentAudioTime) / 60 % 60
+            let totalSeconds = Int(self.instance.getCurrentAudioDuration-self.instance.getCurrentAudioTime) % 60
             
             self.currentAudioTimeLabel.text = String(format:"%2i:%02i", currentMinutes, currentSeconds)
-            self.totalAudioTimeLabel.text = String(format:"%2i:%02i", totalMinutes, totalSeconds)
+            self.totalAudioTimeLabel.text = "-"+String(format:"%2i:%02i", totalMinutes, totalSeconds)
         }
         timer.fire()
     }

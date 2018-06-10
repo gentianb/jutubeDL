@@ -207,6 +207,7 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
             player.currentTime = 0
             player.play()
             updateMediaCenter(currentlyPlaying, duration: player.duration)
+            
         }
 
 
@@ -275,6 +276,9 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
         player.currentTime = currentTime
         updateMediaCenter(currentlyPlaying, duration: player.duration)
     }
+    @objc func playFromCommandCenterWithScrub(_ event: MPChangePlaybackPositionCommandEvent) {
+        player?.currentTime = event.positionTime
+    }
     internal func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         next()
     }
@@ -288,12 +292,15 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
         
         let commandCenter = MPRemoteCommandCenter.shared()
 
+        //TODO:- Research :  -> MPRemoteCommandHandlerStatus
+        
         commandCenter.playCommand.addTarget(self, action: #selector(togglePlayPause))
         commandCenter.pauseCommand.addTarget(self, action: #selector(togglePlayPause))
         commandCenter.nextTrackCommand.addTarget(self, action: #selector(next))
         commandCenter.previousTrackCommand.addTarget(self, action: #selector(previous))
+        commandCenter.changePlaybackPositionCommand.addTarget(self, action: #selector(self.playFromCommandCenterWithScrub(_:)))
     }
-    
+
     private func updateMediaCenter(_ index: Int, duration: TimeInterval){
         let image = playlistFiles[index].albumart
         let artwork = MPMediaItemArtwork.init(boundsSize: image.size, requestHandler: { (size) -> UIImage in
