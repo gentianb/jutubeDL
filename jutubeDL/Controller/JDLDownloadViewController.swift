@@ -72,16 +72,9 @@ class JDLDownloadViewController: UIViewController {
     }
     
     func startDownload(audioUrl : String, audioName: String){
-        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let fileUrl = documentsURL.appendingPathComponent("\(audioName.replacingOccurrences(of: "/", with: ""))")
-        let destination: DownloadRequest.DownloadFileDestination = { _, _ in
-            return (fileUrl, [.removePreviousFile])
-        }
-        print("THIS IS THE fileURL:  \(fileUrl)")
-        print("THIS IS THE destination:  \(destination)")
+        let destination = getDestination(audioName)
         
-        Alamofire.download(audioUrl, to:destination)
-            .downloadProgress { (progress) in
+        Alamofire.download(audioUrl, to: destination).downloadProgress { (progress) in
                 if progress.isIndeterminate{
                     self.progressLabel.text = "Download failed, please try again"
                 }else{
@@ -104,6 +97,16 @@ class JDLDownloadViewController: UIViewController {
                 }
         }
     }
+    //MARK: Get URL to save file
+    func getDestination(_ audioName : String) -> DownloadRequest.DownloadFileDestination{
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let fileUrl = documentsURL.appendingPathComponent("\(audioName.replacingOccurrences(of: "/", with: ""))")
+        let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+            return (fileUrl, [.removePreviousFile])}
+        print("THIS IS THE fileURL:  \(fileUrl)")
+        print("THIS IS THE destination:  \(destination)")
+        return destination
+    }
     
     
     //MARK: - UI
@@ -122,19 +125,20 @@ class JDLDownloadViewController: UIViewController {
         //remove the observer when this view controller is dismissed/deallocated
         NotificationCenter.default.removeObserver(self)
     }
+    
     func checkForYTUrl(){
-
-        guard let ytURL = UIPasteboard.general.string?.youtubeURL else { return}
+        guard let youtubeURL = UIPasteboard.general.string?.youtubeURL else { return}
         
-        if ytURL == lastYoutubeURL{
+        if youtubeURL == lastYoutubeURL{
             print("URL was checked before")
             return
         }
-        lastYoutubeURL = ytURL
         
-        let actionSheet = UIAlertController(title: "YouTube URL Detected", message: "Would you like to add the link to download? ( \(ytURL) )", preferredStyle: .actionSheet)
+        lastYoutubeURL = youtubeURL
+        
+        let actionSheet = UIAlertController(title: "YouTube URL Detected", message: "Would you like to add the link to download?\n \(youtubeURL)", preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
-            self.urlTextField.text = ytURL
+            self.urlTextField.text = youtubeURL
             self.fetchDownloadLink()
         }))
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -145,7 +149,7 @@ class JDLDownloadViewController: UIViewController {
 
 private extension String{
     var youtubeURL: String? {
-        let pattern = "^(https\\:\\/\\/)?(www\\.youtube\\.com|youtu\\.?be)\\/.+$"
+        let pattern = "http(?:s?):\\/\\/(?:www\\.)?youtu(?:be\\.com\\/watch\\?v=|\\.be\\/)([\\w\\-\\_]*)(&(amp;)?‌​[\\w\\?‌​=]*)?"
         
         let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive)
         let range = NSRange(location: 0, length: count)

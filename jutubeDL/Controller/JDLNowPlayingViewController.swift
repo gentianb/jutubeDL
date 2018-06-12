@@ -62,7 +62,6 @@ class JDLNowPlayingViewController: UIViewController, JDLNowPlayingVCDelegate {
     @IBAction func playPauseButtonPressed(_ sender: Any) {
         print("Play pause button pressed")
         instance.togglePlayPause()
-        updatePlayPauseButton()
     }
     
     @IBAction func nextTrackButtonPressed(_ sender: Any) {
@@ -87,10 +86,10 @@ class JDLNowPlayingViewController: UIViewController, JDLNowPlayingVCDelegate {
     //MARK: Shuffle
     
     @IBAction func shuffleButtonPressed(_ sender: Any) {
-        checkShuffleState(instance.isShuffled)
+        setShuffleState(instance.isShuffled)
     }
     
-    private func checkShuffleState(_ state: Bool){
+    private func setShuffleState(_ state: Bool){
         if state{
             instance.setShuffleStatus(!state)
             shuffleButton.setImage(UIImage(named: "shuffle"), for: .normal)
@@ -138,6 +137,8 @@ class JDLNowPlayingViewController: UIViewController, JDLNowPlayingVCDelegate {
         songNameLabel.text = audioFile.name
         updatePlayPauseButton()
         
+        if albumArtImage.image! == audioFile.albumart{return}
+        
         UIView.transition(with: self.albumArtImage, duration: 0.4, options: transitionStyle, animations: {
             self.albumArtImage.image = audioFile.albumart
         }, completion: nil)
@@ -166,6 +167,7 @@ class JDLNowPlayingViewController: UIViewController, JDLNowPlayingVCDelegate {
             if !self.audioSlider.isHighlighted{
                 self.audioSlider.setValue(Float(sliderValue), animated: true)
             }
+            
             let currentMinutes = Int(self.instance.getCurrentAudioTime) / 60 % 60
             let currentSeconds = Int(self.instance.getCurrentAudioTime ) % 60
             
@@ -173,7 +175,7 @@ class JDLNowPlayingViewController: UIViewController, JDLNowPlayingVCDelegate {
             let totalSeconds = Int(self.instance.getCurrentAudioDuration-self.instance.getCurrentAudioTime) % 60
             
             self.currentAudioTimeLabel.text = String(format:"%2i:%02i", currentMinutes, currentSeconds)
-            self.totalAudioTimeLabel.text = "-"+String(format:"%2i:%02i", totalMinutes, totalSeconds)
+            self.totalAudioTimeLabel.text = String(format:"-%2i:%02i", totalMinutes, totalSeconds)
         }
         timer.fire()
     }

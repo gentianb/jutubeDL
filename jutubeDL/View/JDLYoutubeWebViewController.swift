@@ -18,9 +18,6 @@ class JDLYoutubeWebViewController: UIViewController {
         let urlLink = URL(string: "https://m.youtube.com/")!
         let URLReq = URLRequest(url: urlLink)
         webView.load(URLReq)
-        
-        
-
         // Do any additional setup after loading the view.
     }
 

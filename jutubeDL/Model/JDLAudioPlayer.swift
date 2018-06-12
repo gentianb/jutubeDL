@@ -74,31 +74,33 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
     func getAudioFile(for index: Int) -> JDLAudioFile{
         return audioFiles[index]
     }
+    
     func getPlayListFile(for index: Int) -> JDLAudioFile{
         return playlistFiles[index]
     }
     
     func getCurrentPlayListFile() -> JDLAudioFile{
         if playlistFiles.isEmpty{
-            return JDLAudioFile(path: URL(string: "test")!, albumart: #imageLiteral(resourceName: "default-album-image"))
+            return JDLAudioFile(path: URL(string: "Empty")!, albumart: #imageLiteral(resourceName: "default-album-image"))
         }else{
             return playlistFiles[currentlyPlaying]
         }
     }
+    
     func getCurrentAudioFile() -> JDLAudioFile{
         if playlistFiles.isEmpty{
-            return JDLAudioFile(path: URL(string: "test")!, albumart: #imageLiteral(resourceName: "default-album-image"))
+            return JDLAudioFile(path: URL(string: "Empty")!, albumart: #imageLiteral(resourceName: "default-album-image"))
         }else{
             return audioFiles[currentlyPlaying]
         }
     }
-    
     
     var totalAudioFiles: Int{
         get{
             return audioFiles.count
         }
     }
+    
     var isPlaying: Bool{
         get{
             guard let player = player else{return false}
@@ -106,18 +108,21 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
             return player.isPlaying
         }
     }
+    
     var getCurrentAudioTime: TimeInterval{
         get{
             guard let player = player else{ return 0 }
             return player.currentTime
         }
     }
+    
     var getCurrentAudioDuration: TimeInterval{
         get{
             guard let player = player else{ return 0 }
             return player.duration
         }
     }
+    
     //MARK: - Shuffle Logic
     var isShuffled: Bool{
         get{
@@ -167,15 +172,17 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
         }
         if isPlaying{
             player.pause()
+            jdlNowPlayingVCDelegate?.callUpdateViews(.nowPlayingList)
+
         }else{
             player.play()
+            jdlNowPlayingVCDelegate?.callUpdateViews(.nowPlayingList)
         }
     }
     
     
     
     @objc func next(){
-        
         switch loopStatus {
         case .all, .none:
             if loopStatus == .all && currentlyPlaying == audioFiles.count-1{
@@ -194,11 +201,9 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
                     player.play()
                     updateMediaCenter(currentlyPlaying, duration: player.duration)
                     jdlNowPlayingVCDelegate?.callUpdateViews(JDLListSource.nowPlayingList)
-                } catch let error as NSError {
+                } catch{
                     print(error.localizedDescription)
                     currentlyPlaying -= 1
-                    
-                } catch {
                     print("AVAudioPlayer init failed")
                 }
             }
@@ -207,13 +212,10 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
             player.currentTime = 0
             player.play()
             updateMediaCenter(currentlyPlaying, duration: player.duration)
-            
         }
-
-
     }
+    
     @objc func previous(){
-        
         if Int(getCurrentAudioTime) >= 3{
             player!.currentTime = 0
             updateMediaCenter(currentlyPlaying, duration: player!.duration)
@@ -229,11 +231,10 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
                 player.play()
                 updateMediaCenter(currentlyPlaying, duration: player.duration)
                 jdlNowPlayingVCDelegate?.callUpdateViews(JDLListSource.nowPlayingList)
-
-            } catch let error as NSError {
+                
+            } catch {
                 print(error.localizedDescription)
                 currentlyPlaying += 1
-            } catch {
                 print("AVAudioPlayer init failed")
             }
         }
@@ -263,9 +264,8 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
                 setUpMediaCenter()
             }
             updateMediaCenter(index, duration: player.duration)
-        } catch let error as NSError {
+        } catch{
             print(error.localizedDescription)
-        } catch {
             print("AVAudioPlayer init failed")
         }
     }
@@ -276,9 +276,12 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
         player.currentTime = currentTime
         updateMediaCenter(currentlyPlaying, duration: player.duration)
     }
+    
     @objc func playFromCommandCenterWithScrub(_ event: MPChangePlaybackPositionCommandEvent) {
         player?.currentTime = event.positionTime
+        updateMediaCenter(currentlyPlaying, duration: player!.duration)
     }
+    
     internal func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         next()
     }
@@ -306,6 +309,7 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
         let artwork = MPMediaItemArtwork.init(boundsSize: image.size, requestHandler: { (size) -> UIImage in
             return image
         })
+        print("Media center updated?")
         MPNowPlayingInfoCenter.default().nowPlayingInfo = [MPMediaItemPropertyTitle : playlistFiles[index].name,
                                                            MPMediaItemPropertyArtwork : artwork,
                                                            MPMediaItemPropertyArtist : playlistFiles[index].name,

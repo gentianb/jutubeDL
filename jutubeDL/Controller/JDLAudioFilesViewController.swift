@@ -26,7 +26,7 @@ class JDLAudioFilesViewController: UIViewController {
         
     }
     override func viewDidAppear(_ animated: Bool) {
-        print("viewDidAppear")
+        print("is localCount == to totalAudioFiles.count")
         print(localAudioFilesCount != instance.totalAudioFiles)
         if localAudioFilesCount != instance.totalAudioFiles{
             tableView.reloadData()
@@ -37,8 +37,8 @@ class JDLAudioFilesViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 }
+
 extension JDLAudioFilesViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -56,6 +56,4 @@ extension JDLAudioFilesViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         instance.play(with: indexPath.row, source: .audioFilesList)
     }
-    
-    
 }

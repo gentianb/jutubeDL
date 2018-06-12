@@ -119,8 +119,8 @@
 			children = (
 				F847233C20BB226900BB8BD2 /* JDLDownloadViewController.swift */,
 				F818D27120C0AC9700B544B5 /* JDLNowPlayingViewController.swift */,
-				F83D1B0320BB0CBB00253523 /* JDLAudioFilesViewController.swift */,
 				F84148EA20C43A4100CDDC5C /* JDLNowPlayingListViewController.swift */,
+				F83D1B0320BB0CBB00253523 /* JDLAudioFilesViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

@@ -16,7 +16,6 @@ class JDLNowPlayingListViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-
         // Do any additional setup after loading the view.
     }
 
@@ -34,15 +33,16 @@ class JDLNowPlayingListViewController: UIViewController {
 extension JDLNowPlayingListViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! JDLNowPlayingListTableViewCell
         let audioData = instance.getPlayListFile(for: indexPath.row)
         cell.updateLabel(audioData.name)
         return cell
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return instance.totalAudioFiles
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
         instance.play(with: indexPath.row, source: .nowPlayingList)
