@@ -83,6 +83,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F82AE85520D30EE70000826C /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				F84148EE20C4408B00CDDC5C /* JDLListSource.swift */,
+				F84148E620C3FFA500CDDC5C /* JDLLoop.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 		F82C55F720BB97AE00B3D112 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -98,8 +107,6 @@
 			children = (
 				F884E6F920BDE10A0068FB65 /* JDLAudioPlayer.swift */,
 				F884E6FD20BDE72A0068FB65 /* JDLAudioFile.swift */,
-				F84148E620C3FFA500CDDC5C /* JDLLoop.swift */,
-				F84148EE20C4408B00CDDC5C /* JDLListSource.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -147,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				F8B4F11820B71D51004EE642 /* AppDelegate.swift */,
+				F82AE85520D30EE70000826C /* Enums */,
 				F82C55F720BB97AE00B3D112 /* Extensions */,
 				F83D1B0020BB0C9C00253523 /* Model */,
 				F83D1B0120BB0CA200253523 /* View */,

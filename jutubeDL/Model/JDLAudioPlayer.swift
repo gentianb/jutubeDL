@@ -23,6 +23,11 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
     private var loopStatus = JDLLoop.none
     
     var jdlNowPlayingVCDelegate: JDLNowPlayingVCDelegate?
+    
+    private override init() {
+        super.init()
+        NotificationCenter.default.addObserver(self, selector: #selector(handleRouteChange(_:)), name: .AVAudioSessionRouteChange, object: AVAudioSession.sharedInstance())
+    }
 
     
     //MARK: - Fetch Audio Files and process them
@@ -286,6 +291,28 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
         next()
     }
     
+    //MARK: - Handle Interruptions a/o Route Changes
+    
+    @objc func handleRouteChange(_ notification: Notification) {
+        guard let userInfo = notification.userInfo,
+        let reasonValue = userInfo[AVAudioSessionRouteChangeReasonKey] as? UInt,
+            let reason = AVAudioSessionRouteChangeReason(rawValue:reasonValue) else {
+                return
+        }
+        
+        //TODO: See why MediaCenter gets the wrong time when headset disconnects
+        switch reason {
+        case .oldDeviceUnavailable:
+            player?.pause()
+        default:
+            ()
+        }
+    }
+
+    func audioPlayerEndInterruption(_ player: AVAudioPlayer, withOptions flags: Int) {
+        togglePlayPause()
+        updateMediaCenter(currentlyPlaying, duration: player.duration)
+    }
     //MARK: - MediaInfo Center Setup
     
     private func setUpMediaCenter(){
