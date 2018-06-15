@@ -419,6 +419,12 @@
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R66-T8-khI">
+                                <rect key="frame" x="187" y="340" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <color key="textColor" red="0.50164897496006777" green="0.72287298841454128" blue="0.98829740290000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.15686274509803921" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -428,6 +434,7 @@
                             <constraint firstItem="uYJ-sJ-1KF" firstAttribute="centerX" secondItem="xDA-uh-6oS" secondAttribute="centerX" id="Np4-AO-Fad"/>
                             <constraint firstItem="LR0-4X-pWu" firstAttribute="centerX" secondItem="xDA-uh-6oS" secondAttribute="centerX" id="Pd0-Cq-nrR"/>
                             <constraint firstItem="LR0-4X-pWu" firstAttribute="centerX" secondItem="T29-U8-QZf" secondAttribute="centerX" id="QHR-Zy-8DE"/>
+                            <constraint firstItem="R66-T8-khI" firstAttribute="centerX" secondItem="uYJ-sJ-1KF" secondAttribute="centerX" id="Qg0-Sa-hIt"/>
                             <constraint firstItem="uYJ-sJ-1KF" firstAttribute="leading" secondItem="ZpU-QL-reh" secondAttribute="leading" id="V5y-vY-phU"/>
                             <constraint firstItem="LR0-4X-pWu" firstAttribute="centerX" secondItem="tg7-4k-A18" secondAttribute="centerX" id="VQV-sj-o9r"/>
                             <constraint firstItem="xDA-uh-6oS" firstAttribute="top" secondItem="LR0-4X-pWu" secondAttribute="bottom" constant="84" id="Vug-MP-LGd"/>
@@ -436,6 +443,7 @@
                             <constraint firstItem="uYJ-sJ-1KF" firstAttribute="top" secondItem="xDA-uh-6oS" secondAttribute="bottom" constant="8" symbolic="YES" id="lSS-Ih-Q3m"/>
                             <constraint firstItem="T29-U8-QZf" firstAttribute="centerX" secondItem="ZpU-QL-reh" secondAttribute="centerX" id="u71-Yt-zp9"/>
                             <constraint firstItem="xDA-uh-6oS" firstAttribute="leading" secondItem="ZpU-QL-reh" secondAttribute="leadingMargin" constant="96" id="v7P-vH-mT1"/>
+                            <constraint firstItem="R66-T8-khI" firstAttribute="top" secondItem="uYJ-sJ-1KF" secondAttribute="bottom" constant="7" id="x56-bG-kvz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Awx-Dr-M3E"/>
                     </view>
@@ -444,6 +452,7 @@
                         <outlet property="downloadButton" destination="T29-U8-QZf" id="eQ7-I0-yW5"/>
                         <outlet property="progressLabel" destination="uYJ-sJ-1KF" id="2qf-Tq-TJr"/>
                         <outlet property="progressView" destination="xDA-uh-6oS" id="vg5-Se-D1X"/>
+                        <outlet property="secondSourceLabel" destination="R66-T8-khI" id="tgf-rp-QYc"/>
                         <outlet property="songNameLabel" destination="LR0-4X-pWu" id="xMt-DK-cCd"/>
                         <outlet property="urlTextField" destination="tg7-4k-A18" id="uZM-XS-8jL"/>
                     </connections>

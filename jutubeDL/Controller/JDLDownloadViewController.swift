@@ -19,6 +19,7 @@ class JDLDownloadViewController: UIViewController {
     @IBOutlet weak var songNameLabel: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var progressLabel: UILabel!
+    @IBOutlet weak var secondSourceLabel: UILabel!
     
     let instance = JDLAudioPlayer.instance
     
@@ -29,6 +30,7 @@ class JDLDownloadViewController: UIViewController {
         self.hideKeyboardWhenTappedOutsideOfTxtFields()
         // Do any additional setup after loading the view.
         urlTextField.attributedPlaceholder = NSAttributedString(string: "Enter YT URL", attributes: [NSAttributedStringKey.foregroundColor : UIColor.lightGray])
+        urlTextField.clear
         
         setTabBarItemsState(instance.isListEmpty)
         
@@ -67,6 +69,8 @@ class JDLDownloadViewController: UIViewController {
                 self.startDownload(audioUrl: resjson["link"].string!, audioName: "\(resjson["title"].string!).mp3")
             }else{
                 self.progressLabel.text = response.error!.localizedDescription
+                //try again with new source
+                self.fetchDownloadLinkSource2()
             }
         }
     }
@@ -97,6 +101,30 @@ class JDLDownloadViewController: UIViewController {
                 }
         }
     }
+    
+    func fetchDownloadLinkSource2(){
+        print("Source 2")
+        secondSourceLabel.text = "Trying other source to download..."
+        guard let youtubeID = urlTextField.text?.getYoutubeID else { print("couldnt get id") ; return}
+        Alamofire.request("https://baixaryoutube.net/@api/json/mp3/\(youtubeID)").responseJSON { (response) in
+            if response.result.isSuccess{
+                let resJson : JSON = JSON(response.result.value!)
+                guard let url = resJson["vidInfo"]["2"]["dloadUrl"].string else {
+                    self.secondSourceLabel.text = "Invalid response from server"
+                    return
+                }
+                self.songNameLabel.text = resJson["vidTitle"].string!
+                self.startDownload(audioUrl: "https:\(url)", audioName: resJson["vidTitle"].string!)
+                self.secondSourceLabel.text = nil
+            }else{
+                self.secondSourceLabel.text = "Server unavailable"
+            }
+        }
+    }
+
+    
+    
+    
     //MARK: Get URL to save file
     func getDestination(_ audioName : String) -> DownloadRequest.DownloadFileDestination{
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
@@ -127,7 +155,7 @@ class JDLDownloadViewController: UIViewController {
     }
     
     func checkForYTUrl(){
-        guard let youtubeURL = UIPasteboard.general.string?.youtubeURL else { return}
+        guard let youtubeURL = UIPasteboard.general.string?.getYoutubeURL else { return}
         
         if youtubeURL == lastYoutubeURL{
             print("URL was checked before")
@@ -148,7 +176,7 @@ class JDLDownloadViewController: UIViewController {
 }
 
 private extension String{
-    var youtubeURL: String? {
+    var getYoutubeURL: String? {
         let pattern = "http(?:s?):\\/\\/(?:www\\.)?youtu(?:be\\.com\\/watch\\?v=|\\.be\\/)([\\w\\-\\_]*)(&(amp;)?‌​[\\w\\?‌​=]*)?"
         
         let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive)
@@ -160,4 +188,17 @@ private extension String{
         
         return (self as NSString).substring(with: result.range)
 }
+    var getYoutubeID: String? {
+        let pattern = "((?<=(v|V)/)|(?<=be/)|(?<=(\\?|\\&)v=)|(?<=embed/))([\\w-]++)"
+        
+        let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive)
+        let range = NSRange(location: 0, length: count)
+        
+        guard let result = regex?.firstMatch(in: self, options: [], range: range) else {
+            return nil
+        }
+        
+        return (self as NSString).substring(with: result.range)
+    }
+    
 }
