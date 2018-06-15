@@ -20,6 +20,7 @@ class JDLDownloadViewController: UIViewController {
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var secondSourceLabel: UILabel!
+
     
     let instance = JDLAudioPlayer.instance
     
@@ -30,7 +31,6 @@ class JDLDownloadViewController: UIViewController {
         self.hideKeyboardWhenTappedOutsideOfTxtFields()
         // Do any additional setup after loading the view.
         urlTextField.attributedPlaceholder = NSAttributedString(string: "Enter YT URL", attributes: [NSAttributedStringKey.foregroundColor : UIColor.lightGray])
-        urlTextField.clear
         
         setTabBarItemsState(instance.isListEmpty)
         
@@ -45,6 +45,7 @@ class JDLDownloadViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    //MARK: - Buttons
     
     @IBAction func downloadPressed(_ sender: Any) {
         if urlTextField.text != ""{
@@ -52,6 +53,11 @@ class JDLDownloadViewController: UIViewController {
         }
     }
 
+    @IBAction func clearButtonPressed(_ sender: Any) {
+        urlTextField.text = nil
+    }
+    
+    
     //MARK: - Networking
     func fetchDownloadLink(){
         print("Starting")
@@ -114,7 +120,7 @@ class JDLDownloadViewController: UIViewController {
                     return
                 }
                 self.songNameLabel.text = resJson["vidTitle"].string!
-                self.startDownload(audioUrl: "https:\(url)", audioName: resJson["vidTitle"].string!)
+                self.startDownload(audioUrl: "https:\(url)", audioName: resJson["vidTitle"].string!+".mp3")
                 self.secondSourceLabel.text = nil
             }else{
                 self.secondSourceLabel.text = "Server unavailable"
@@ -174,6 +180,7 @@ class JDLDownloadViewController: UIViewController {
         self.present(actionSheet, animated: true, completion: nil)
     }
 }
+//MARK: - Get Youtube URL From String or Youtube ID
 
 private extension String{
     var getYoutubeURL: String? {
@@ -185,7 +192,6 @@ private extension String{
         guard let result = regex?.firstMatch(in: self, options: [], range: range) else {
             return nil
         }
-        
         return (self as NSString).substring(with: result.range)
 }
     var getYoutubeID: String? {
@@ -197,7 +203,6 @@ private extension String{
         guard let result = regex?.firstMatch(in: self, options: [], range: range) else {
             return nil
         }
-        
         return (self as NSString).substring(with: result.range)
     }
     
