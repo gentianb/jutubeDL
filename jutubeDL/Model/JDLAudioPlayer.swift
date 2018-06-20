@@ -69,9 +69,7 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
     }
     //MARK: Fetch list state
     var isListEmpty: Bool{
-        get{
             return audioFiles.isEmpty
-        }
     }
     
     //MARK: - Get/Set Audio Files
@@ -101,38 +99,28 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
     }
     
     var totalAudioFiles: Int{
-        get{
             return audioFiles.count
-        }
     }
     
     var isPlaying: Bool{
-        get{
             guard let player = player else{return false}
             print(player.isPlaying)
             return player.isPlaying
-        }
     }
     
     var getCurrentAudioTime: TimeInterval{
-        get{
             guard let player = player else{ return 0 }
             return player.currentTime
-        }
     }
     
     var getCurrentAudioDuration: TimeInterval{
-        get{
             guard let player = player else{ return 0 }
             return player.duration
-        }
     }
     
     //MARK: - Shuffle Logic
     var isShuffled: Bool{
-        get{
             return shuffleStatus
-        }
     }
     func setShuffleStatus(_ state: Bool){
         shuffleStatus = state
@@ -149,9 +137,7 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
     }
     //MARK: - Loop Logic
     var getLoopState: JDLLoop{
-        get{
             return loopStatus
-        }
     }
     func setLoopState(_ state: JDLLoop){
         loopStatus = state

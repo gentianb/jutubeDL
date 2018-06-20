@@ -180,7 +180,7 @@ class JDLDownloadViewController: UIViewController {
         self.present(actionSheet, animated: true, completion: nil)
     }
 }
-//MARK: - Get Youtube URL From String or Youtube ID
+//MARK: - Get Youtube URL or Youtube ID from String
 
 private extension String{
     var getYoutubeURL: String? {
