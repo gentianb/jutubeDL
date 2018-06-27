@@ -20,14 +20,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="frp-mq-pa4">
-                                <rect key="frame" x="259.5" y="552" width="31.5" height="31"/>
+                                <rect key="frame" x="259.5" y="552" width="31.5" height="80"/>
                                 <state key="normal" image="next"/>
                                 <connections>
                                     <action selector="nextTrackButtonPressed:" destination="oq1-Gf-F9u" eventType="touchUpInside" id="z81-43-fwJ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w1h-Cu-gxb">
-                                <rect key="frame" x="320" y="548" width="39" height="39"/>
+                                <rect key="frame" x="320" y="548" width="39" height="88"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="39" id="2UW-kB-3ei"/>
                                 </constraints>
@@ -38,7 +38,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ha-DV-JMV">
-                                <rect key="frame" x="84.5" y="552" width="30" height="31"/>
+                                <rect key="frame" x="84.5" y="552" width="30" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="2uO-5t-VDs"/>
                                 </constraints>
@@ -48,7 +48,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YnY-be-E0i">
-                                <rect key="frame" x="149.5" y="529" width="76" height="77"/>
+                                <rect key="frame" x="149.5" y="529" width="76" height="126"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="76" id="LDl-Ke-6c5"/>
                                 </constraints>
@@ -58,7 +58,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZOB-dn-oAb">
-                                <rect key="frame" x="16" y="548" width="37.5" height="39"/>
+                                <rect key="frame" x="16" y="548" width="37.5" height="88"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <inset key="imageEdgeInsets" minX="11" minY="11" maxX="11" maxY="11"/>
                                 <state key="normal" image="shuffle"/>
@@ -188,7 +188,7 @@
                                 <rect key="frame" x="0.0" y="87" width="375" height="580"/>
                                 <color key="backgroundColor" red="0.15686274509803921" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="LCV-DT-PA9" customClass="JDLNowPlayingListTableViewCell" customModule="jutubeDL" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="LCV-DT-PA9" customClass="JDLNowPlayingListTableViewCell" customModule="jutubeDL" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LCV-DT-PA9" id="MWW-Uf-zYc">
@@ -371,6 +371,7 @@
                     <tabBarItem key="tabBarItem" title="Playlist" image="TabBarplaylistIcon" id="fOK-Bg-8xP" customClass="JDLPlaylistTabBarItem" customModule="jutubeDL" customModuleProvider="target"/>
                     <connections>
                         <outlet property="tableView" destination="zaU-vj-mqr" id="IXR-BD-yNl"/>
+                        <segue destination="oq1-Gf-F9u" kind="show" identifier="JDLNowPlayingSegue" id="kea-fL-KVI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oG8-c5-E4R" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -521,4 +522,7 @@
         <image name="repeat" width="256" height="256"/>
         <image name="shuffle" width="256" height="256"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="kea-fL-KVI"/>
+    </inferredMetricsTieBreakers>
 </document>

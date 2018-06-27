@@ -86,8 +86,17 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
         if playlistFiles.isEmpty{
             return JDLAudioFile(path: URL(string: "Empty")!, albumart: #imageLiteral(resourceName: "default-album-image"))
         }else{
-            return playlistFiles[currentlyPlaying]
+            //this produces an error if the user goes imidiatley after launching the app to the JDLAudioFilesVC and taps on a song, and then filters the list and taps on the Now Playing Icon
+            // The reason why is because the delegate for updating the view isn't initialized and doesn't get called, so when the JDLNowPlayingVC gets loaded it fetches the wrong file with an out of bounds index.
+            if playlistFiles.count < currentlyPlaying{
+                return audioFiles[currentlyPlaying]
+            }else{
+                return playlistFiles[currentlyPlaying]
+            }
         }
+    }
+    var getJDLAudioFile: [JDLAudioFile]{
+        return audioFiles
     }
     
     func getCurrentAudioFile() -> JDLAudioFile{
@@ -116,6 +125,10 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
     var getCurrentAudioDuration: TimeInterval{
             guard let player = player else{ return 0 }
             return player.duration
+    }
+    
+    func setPlaylist(_ playlist: [JDLAudioFile]){
+        playlistFiles = playlist
     }
     
     //MARK: - Shuffle Logic
