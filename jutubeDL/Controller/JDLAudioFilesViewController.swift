@@ -92,9 +92,7 @@ extension JDLAudioFilesViewController: UISearchResultsUpdating{
         if search == ""{
             audioFiles = instance.getJDLAudioFile
         }else{
-            if audioFiles.isEmpty{
                 audioFiles = instance.getJDLAudioFile
-            }
             audioFiles = audioFiles.filter { (audio : JDLAudioFile) -> Bool in
                 audio.name.lowercased().contains(search.lowercased())
             }
