@@ -32,6 +32,7 @@ class JDLAudioFilesViewController: UIViewController {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Filter"
+        searchController.searchBar.barStyle = .black
         tableView.tableHeaderView = searchController.searchBar
         definesPresentationContext = false
 
