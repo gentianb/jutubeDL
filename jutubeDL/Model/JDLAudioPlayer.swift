@@ -223,24 +223,24 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
         if Int(getCurrentAudioTime) >= 3{
             player!.currentTime = 0
             updateMediaCenter(currentlyPlaying, duration: player!.duration)
-        }else if currentlyPlaying > 0  {
-            do {
-                print("INSIDE NEXT")
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-                try AVAudioSession.sharedInstance().setActive(true)
-                currentlyPlaying -= 1
-                player = try AVAudioPlayer(contentsOf: playlistFiles[currentlyPlaying].path)
-                player!.delegate = self
-                guard let player = player else { return }
-                player.play()
-                updateMediaCenter(currentlyPlaying, duration: player.duration)
-                jdlNowPlayingVCDelegate?.callUpdateViews(JDLListSource.nowPlayingList)
-                
-            } catch {
-                print(error.localizedDescription)
-                currentlyPlaying += 1
-                print("AVAudioPlayer init failed")
-            }
+        }else if currentlyPlaying > 0 && loopStatus != .one  {
+                do {
+                    print("INSIDE NEXT")
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+                    try AVAudioSession.sharedInstance().setActive(true)
+                    currentlyPlaying -= 1
+                    player = try AVAudioPlayer(contentsOf: playlistFiles[currentlyPlaying].path)
+                    player!.delegate = self
+                    guard let player = player else { return }
+                    player.play()
+                    updateMediaCenter(currentlyPlaying, duration: player.duration)
+                    jdlNowPlayingVCDelegate?.callUpdateViews(JDLListSource.nowPlayingList)
+                    
+                } catch {
+                    print(error.localizedDescription)
+                    currentlyPlaying += 1
+                    print("AVAudioPlayer init failed")
+                }
         }
     }
     

@@ -17,6 +17,8 @@ class JDLNowPlayingViewController: UIViewController, JDLNowPlayingVCDelegate {
     var transitionStyle = UIViewAnimationOptions.transitionCrossDissolve
 
     
+    @IBOutlet weak var blurBG: UIImageView!
+    @IBOutlet weak var backgroundAlbumArt: UIImageView!
     @IBOutlet weak var songNameLabel: UILabel!
     @IBOutlet weak var albumArtImage: UIImageView!
     @IBOutlet weak var playPauseButton: UIButton!
@@ -47,6 +49,17 @@ class JDLNowPlayingViewController: UIViewController, JDLNowPlayingVCDelegate {
         
         updateNowPlaying(JDLListSource.nowPlayingList)
         startUpdatingSliderAndAudioTime()
+        
+        // set effect type and view
+        let effect = UIBlurEffect(style: .dark)
+        let effectView = UIVisualEffectView(effect: effect)
+
+        // set boundry and alpha
+        effectView.frame = blurBG.bounds
+        effectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        effectView.alpha = 1.0
+        // I first used backgroundAlbumArt for the subview but it's incompatible with UIView.transition so by adding another UIImaveView ontop of it results in a easy workaround
+        blurBG.addSubview(effectView)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -138,9 +151,14 @@ class JDLNowPlayingViewController: UIViewController, JDLNowPlayingVCDelegate {
         updatePlayPauseButton()
         
         if albumArtImage.image! == audioFile.albumart{return}
-        
+
         UIView.transition(with: self.albumArtImage, duration: 0.4, options: transitionStyle, animations: {
             self.albumArtImage.image = audioFile.albumart
+        }, completion: nil)
+        
+        
+        UIView.transition(with: self.backgroundAlbumArt, duration: 1.0, options: [.transitionCrossDissolve, .allowAnimatedContent, .layoutSubviews ], animations: {
+            self.backgroundAlbumArt.image = audioFile.albumart
         }, completion: nil)
     }
     
