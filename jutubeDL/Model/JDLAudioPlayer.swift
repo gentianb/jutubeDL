@@ -189,11 +189,11 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
     @objc func next(){
         switch loopStatus {
         case .all, .none:
-            if loopStatus == .all && currentlyPlaying == audioFiles.count-1{
+            if loopStatus == .all && currentlyPlaying == playlistFiles.count-1{
                 print("End of playlist, return to 0")
                 currentlyPlaying = -1
             }
-            if currentlyPlaying < totalAudioFiles-1 {
+            if currentlyPlaying < playlistFiles.count - 1 {
                 do {
                     print("INSIDE NEXT")
                     try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
@@ -219,6 +219,8 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
         }
     }
     
+    //MARK: -
+    //TODO: Revise this.
     @objc func previous(){
         if Int(getCurrentAudioTime) >= 3{
             player!.currentTime = 0
@@ -243,7 +245,7 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
                 }
         }
     }
-    
+    //MARK: -
     func play(with index: Int, source: JDLListSource) {
         currentlyPlaying = index
         do {

@@ -22,6 +22,7 @@
 		F847233F20BB248200BB8BD2 /* UIViewController+DismissKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F847233E20BB248200BB8BD2 /* UIViewController+DismissKeyboard.swift */; };
 		F884E6FA20BDE10A0068FB65 /* JDLAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F884E6F920BDE10A0068FB65 /* JDLAudioPlayer.swift */; };
 		F884E6FE20BDE72A0068FB65 /* JDLAudioFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F884E6FD20BDE72A0068FB65 /* JDLAudioFile.swift */; };
+		F889A793210A69C900D48301 /* gblogo.png in Resources */ = {isa = PBXBuildFile; fileRef = F889A792210A69C900D48301 /* gblogo.png */; };
 		F8B4F11920B71D51004EE642 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B4F11820B71D51004EE642 /* AppDelegate.swift */; };
 		F8B4F11E20B71D51004EE642 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8B4F11C20B71D51004EE642 /* Main.storyboard */; };
 		F8B4F12020B71D53004EE642 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8B4F11F20B71D53004EE642 /* Assets.xcassets */; };
@@ -46,6 +47,7 @@
 		F847233E20BB248200BB8BD2 /* UIViewController+DismissKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+DismissKeyboard.swift"; sourceTree = "<group>"; };
 		F884E6F920BDE10A0068FB65 /* JDLAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDLAudioPlayer.swift; sourceTree = "<group>"; };
 		F884E6FD20BDE72A0068FB65 /* JDLAudioFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDLAudioFile.swift; sourceTree = "<group>"; };
+		F889A792210A69C900D48301 /* gblogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gblogo.png; sourceTree = "<group>"; };
 		F8B4F11520B71D51004EE642 /* jutubeDL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jutubeDL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8B4F11820B71D51004EE642 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8B4F11D20B71D51004EE642 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -132,10 +134,19 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		F88B0B67210A6FC100A2AD1A /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				F889A792210A69C900D48301 /* gblogo.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		F8B4F10C20B71D51004EE642 = {
 			isa = PBXGroup;
 			children = (
 				F8B4F11720B71D51004EE642 /* jutubeDL */,
+				F88B0B67210A6FC100A2AD1A /* Images */,
 				F8B4F11620B71D51004EE642 /* Products */,
 				51EBE0CED5DDD5EAD0AC5038 /* Pods */,
 				6379A0B62AF694392FE840D5 /* Frameworks */,
@@ -163,16 +174,8 @@
 				F8B4F12120B71D53004EE642 /* LaunchScreen.storyboard */,
 				F8B4F11F20B71D53004EE642 /* Assets.xcassets */,
 				F8B4F12420B71D53004EE642 /* Info.plist */,
-				F8B4F12C20B762BE004EE642 /* musique */,
 			);
 			path = jutubeDL;
-			sourceTree = "<group>";
-		};
-		F8B4F12C20B762BE004EE642 /* musique */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = musique;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,6 +247,7 @@
 				F8B4F12320B71D53004EE642 /* LaunchScreen.storyboard in Resources */,
 				F8B4F12020B71D53004EE642 /* Assets.xcassets in Resources */,
 				F8B4F11E20B71D51004EE642 /* Main.storyboard in Resources */,
+				F889A793210A69C900D48301 /* gblogo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
