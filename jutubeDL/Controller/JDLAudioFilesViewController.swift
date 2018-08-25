@@ -57,6 +57,20 @@ class JDLAudioFilesViewController: UIViewController {
         searchController.isActive = false
         print("dissapear")
     }
+    func askForConfirmation(_ completion: @escaping (_ input: Bool) -> Void){
+        let test = UIAlertController(title: "Confirm Deletion", message: "Do you really want to delete this file?", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "Yes", style: .destructive) { (action) in
+            print("CONFIRMED YES")
+            completion(true)
+        }
+        let noAction = UIAlertAction(title: "No", style: .cancel) { (action) in
+            completion(false)
+        }
+        test.addAction(yesAction)
+        test.addAction(noAction)
+
+        self.present(test, animated: true)
+    }
 }
 
 extension JDLAudioFilesViewController: UITableViewDelegate, UITableViewDataSource{
@@ -74,16 +88,64 @@ extension JDLAudioFilesViewController: UITableViewDelegate, UITableViewDataSourc
         }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if !(searchController.searchBar.text?.isEmpty)!{
+            instance.setPlaylist(audioFiles)
+            print("SEARCH BAR IS ACTIVE SO WE Set the plAYLIST TO THE FILTERED ONE")
+        }else{
+            instance.setPlaylist(audioFiles)
+        }
+        
         if audioFiles.count != instance.totalAudioFiles{
             instance.play(with: indexPath.row, source: .nowPlayingList)
         }else{
             instance.play(with: indexPath.row, source: .audioFilesList)
         }
+
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    //MARK: Edit Row Actions
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .none
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAudioFileAction = UITableViewRowAction(style: .destructive, title: "DELETE") { (rowAction, indexPath) in
+            print("DELETING SONG...")
+            self.askForConfirmation({ (isConfirmed) in
+                if isConfirmed{
+                    //-------
+                    self.instance.deleteAudioFileAt(path: self.audioFiles[indexPath.row].path, completion: { (hasDeleted) in
+                        if hasDeleted{
+                            print("sucessfully deleted")
+                            self.show(message: "Success")
+                            self.audioFiles = JDLAudioPlayer.instance.getJDLAudioFile
+                            tableView.deleteRows(at: [indexPath], with: .automatic)
+                        }else{
+                            self.show(message: "Error occurred")
+                        }
+                    //-------
+                    })
+                }
+            })
+
+        }
+        let addToQueuAction = UITableViewRowAction(style: .default, title: "ADD TO QUEUE") { (rowAction, indexPath) in
+            self.instance.addToQueue(self.audioFiles[indexPath.row])
+            self.show(message: "Song added.")
+            print("ADDING TO QUEUE")
+        }
+        addToQueuAction.backgroundColor = UIColor(red:0.00, green:0.52, blue:0.26, alpha:1.0)
+        
+        return [addToQueuAction, deleteAudioFileAction]
     }
 }
 // MARK: UISearchController
 extension JDLAudioFilesViewController: UISearchResultsUpdating{
+    
     func updateSearchResults(for searchController: UISearchController) {
         print(searchController.searchBar.text!)
         filterAudioFiles(searchString: searchController.searchBar.text!)
@@ -92,13 +154,14 @@ extension JDLAudioFilesViewController: UISearchResultsUpdating{
     func filterAudioFiles(searchString search: String){
         if search == ""{
             audioFiles = instance.getJDLAudioFile
+            print("SEARCH DONE OR EMPTY!")
         }else{
                 audioFiles = instance.getJDLAudioFile
             audioFiles = audioFiles.filter { (audio : JDLAudioFile) -> Bool in
                 audio.name.lowercased().contains(search.lowercased())
             }
         }
-        instance.setPlaylist(audioFiles)
         tableView.reloadData()
     }
 }
+

@@ -35,6 +35,7 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
     // there reason why im always fetching here instead of appending from the download function
     // Is because sometimes the downloadCompleted response gets triggered without any data being available
     // so until i figure that out this is the way to go
+    /// Scans for local audio files and reloads the container array.
     func fetchAudioFiles(){
         audioFiles.removeAll()
         let fileManager = FileManager.default
@@ -51,7 +52,8 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
             print("error accessing files")
         }
     }
-    
+
+    ///Returns the artwork for the given path. Returns default one if non-existent.
     private func getArtwork(audioPath: URL) -> UIImage {
         
         let playerItem = AVPlayerItem(url: audioPath)
@@ -68,20 +70,35 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
         return UIImage(named: "default-album-image")!
     }
     //MARK: Fetch list state
+    ///Returns boolean indicating presence of audio files.
     var isListEmpty: Bool{
             return audioFiles.isEmpty
     }
     
     //MARK: - Get/Set Audio Files
-    
+    ///Returns JDLAudioFile from the main Array.
     func getAudioFile(for index: Int) -> JDLAudioFile{
         return audioFiles[index]
     }
-    
-    func getPlayListFile(for index: Int) -> JDLAudioFile{
-        return playlistFiles[index]
+    ///Adds JDLAudioFile to be played next.
+    func addToQueue(_ file: JDLAudioFile){
+        print("\(currentlyPlaying) \(playlistFiles.endIndex) \(playlistFiles.count)")
+        playlistFiles.insert(file, at: currentlyPlaying+1)
     }
-    
+    ///Deletes file at given URL.
+    func deleteAudioFileAt(path: URL, completion: (_ result: Bool) -> Void){
+        let fileManager = FileManager.default
+        do{
+            try fileManager.removeItem(at: path)
+            fetchAudioFiles()
+            completion(true)
+        }
+        catch{
+            print(error.localizedDescription)
+            completion(false)
+        }
+    }
+    ///
     func getCurrentPlayListFile() -> JDLAudioFile{
         if playlistFiles.isEmpty{
             return JDLAudioFile(path: URL(string: "Empty")!, albumart: #imageLiteral(resourceName: "default-album-image"))
@@ -95,10 +112,11 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
             }
         }
     }
+    ///Returns the main Audio Files Array.
     var getJDLAudioFile: [JDLAudioFile]{
         return audioFiles
     }
-    
+    ///Returns the current playing Audio File.
     func getCurrentAudioFile() -> JDLAudioFile{
         if playlistFiles.isEmpty{
             return JDLAudioFile(path: URL(string: "Empty")!, albumart: #imageLiteral(resourceName: "default-album-image"))
@@ -106,41 +124,49 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
             return audioFiles[currentlyPlaying]
         }
     }
-    
+    ///Returns an integer indicating the total number of audio files stored.
     var totalAudioFiles: Int{
             return audioFiles.count
     }
-    
+    ///Returns a boolean indicating if the player is playing.
     var isPlaying: Bool{
             guard let player = player else{return false}
             print(player.isPlaying)
             return player.isPlaying
     }
-    
+    ///Returns the elapsed time for the Audio File.
     var getCurrentAudioTime: TimeInterval{
             guard let player = player else{ return 0 }
             return player.currentTime
     }
-    
+    ///Returns the duration for the current AudioFile.
     var getCurrentAudioDuration: TimeInterval{
             guard let player = player else{ return 0 }
             return player.duration
     }
-    
+    ///Sets the playlist to the one passed as an argument.
     func setPlaylist(_ playlist: [JDLAudioFile]){
         playlistFiles = playlist
     }
+    ///Returns the current playlist.
+    func getPlaylist() -> [JDLAudioFile]{
+        return playlistFiles
+    }
     
     //MARK: - Shuffle Logic
+    ///Returns a boolean indicating if the playlist is shuffled.
     var isShuffled: Bool{
             return shuffleStatus
     }
+    ///Set the shuffle status. Also shuffles the playlist.
     func setShuffleStatus(_ state: Bool){
         shuffleStatus = state
         shufflePlayList()
     }
     //MARK:  Manage playlist
+    ///Shuffles the playlist files.
     private func shufflePlayList(){
+        //TODO: Think of how to unshuffle without losing the current playlist combination.
         if shuffleStatus{
             currentlyPlaying = 0
             playlistFiles.shuffle()
@@ -149,9 +175,11 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
         }
     }
     //MARK: - Loop Logic
+    ///Returns the loop state of the player.
     var getLoopState: JDLLoop{
             return loopStatus
     }
+    ///Sets the loop state of the player.
     func setLoopState(_ state: JDLLoop){
         loopStatus = state
     }
@@ -167,7 +195,7 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
     }
     
     //MARK: - Audio Player
-    
+    ///On call resumes or pauses the player.
     @objc func togglePlayPause(){
         print("Toggle method")
         guard let player = player else {
@@ -185,7 +213,7 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
     }
     
     
-    
+    ///Skips to the next song.
     @objc func next(){
         switch loopStatus {
         case .all, .none:
@@ -203,7 +231,7 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
                     player!.delegate = self
                     guard let player = player else { return }
                     player.play()
-                    updateMediaCenter(currentlyPlaying, duration: player.duration)
+                    updateCommandCenter(currentlyPlaying, duration: player.duration)
                     jdlNowPlayingVCDelegate?.callUpdateViews(JDLListSource.nowPlayingList)
                 } catch{
                     print(error.localizedDescription)
@@ -215,16 +243,17 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
             guard let player = player else {return}
             player.currentTime = 0
             player.play()
-            updateMediaCenter(currentlyPlaying, duration: player.duration)
+            updateCommandCenter(currentlyPlaying, duration: player.duration)
         }
     }
     
     //MARK: -
     //TODO: Revise this.
+    ///Goes and plays the previous song.
     @objc func previous(){
         if Int(getCurrentAudioTime) >= 3{
             player!.currentTime = 0
-            updateMediaCenter(currentlyPlaying, duration: player!.duration)
+            updateCommandCenter(currentlyPlaying, duration: player!.duration)
         }else if currentlyPlaying > 0 && loopStatus != .one  {
                 do {
                     print("INSIDE NEXT")
@@ -235,7 +264,7 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
                     player!.delegate = self
                     guard let player = player else { return }
                     player.play()
-                    updateMediaCenter(currentlyPlaying, duration: player.duration)
+                    updateCommandCenter(currentlyPlaying, duration: player.duration)
                     jdlNowPlayingVCDelegate?.callUpdateViews(JDLListSource.nowPlayingList)
                     
                 } catch {
@@ -246,6 +275,7 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
         }
     }
     //MARK: -
+    ///Play audio file with given index, must not be greater than the count of the array.
     func play(with index: Int, source: JDLListSource) {
         currentlyPlaying = index
         do {
@@ -267,25 +297,25 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
             }
             if !isReceivingRemoteControlEvents{
                 print("set up media center")
-                setUpMediaCenter()
+                setUpCommandCenter()
             }
-            updateMediaCenter(index, duration: player.duration)
+            updateCommandCenter(index, duration: player.duration)
         } catch{
             print(error.localizedDescription)
             print("AVAudioPlayer init failed")
         }
     }
-    
+    ///Sets the player at the given time.
     func playAt(set time: Float){
         guard let player = player else {return}
         let currentTime = TimeInterval(time * Float(getCurrentAudioDuration))
         player.currentTime = currentTime
-        updateMediaCenter(currentlyPlaying, duration: player.duration)
+        updateCommandCenter(currentlyPlaying, duration: player.duration)
     }
     
-    @objc func playFromCommandCenterWithScrub(_ event: MPChangePlaybackPositionCommandEvent) {
+    @objc private func playFromCommandCenterWithScrub(_ event: MPChangePlaybackPositionCommandEvent) {
         player?.currentTime = event.positionTime
-        updateMediaCenter(currentlyPlaying, duration: player!.duration)
+        updateCommandCenter(currentlyPlaying, duration: player!.duration)
     }
     
     internal func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
@@ -294,7 +324,7 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
     
     //MARK: - Handle Interruptions a/o Route Changes
     
-    @objc func handleRouteChange(_ notification: Notification) {
+    @objc private func handleRouteChange(_ notification: Notification) {
         guard let userInfo = notification.userInfo,
         let reasonValue = userInfo[AVAudioSessionRouteChangeReasonKey] as? UInt,
             let reason = AVAudioSessionRouteChangeReason(rawValue:reasonValue) else {
@@ -310,13 +340,13 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
         }
     }
 
-    func audioPlayerEndInterruption(_ player: AVAudioPlayer, withOptions flags: Int) {
+    internal func audioPlayerEndInterruption(_ player: AVAudioPlayer, withOptions flags: Int) {
         togglePlayPause()
-        updateMediaCenter(currentlyPlaying, duration: player.duration)
+        updateCommandCenter(currentlyPlaying, duration: player.duration)
     }
     //MARK: - MediaInfo Center Setup
-    
-    private func setUpMediaCenter(){
+    ///Initializes Command Center
+    private func setUpCommandCenter(){
         isReceivingRemoteControlEvents = true
         print("INSIDE OF MEDIA CENTER")
         UIApplication.shared.beginReceivingRemoteControlEvents()
@@ -331,8 +361,8 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
         commandCenter.previousTrackCommand.addTarget(self, action: #selector(previous))
         commandCenter.changePlaybackPositionCommand.addTarget(self, action: #selector(self.playFromCommandCenterWithScrub(_:)))
     }
-
-    private func updateMediaCenter(_ index: Int, duration: TimeInterval){
+    /// Update Command Center with the actual Audio File Info
+    private func updateCommandCenter(_ index: Int, duration: TimeInterval){
         let image = playlistFiles[index].albumart
         let artwork = MPMediaItemArtwork.init(boundsSize: image.size, requestHandler: { (size) -> UIImage in
             return image

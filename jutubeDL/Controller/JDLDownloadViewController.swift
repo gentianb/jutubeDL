@@ -49,8 +49,10 @@ class JDLDownloadViewController: UIViewController {
     
     @IBAction func downloadPressed(_ sender: Any) {
         if urlTextField.text != ""{
+            downloadButton.isEnabled = false
             fetchDownloadLink()
         }
+        
     }
 
     @IBAction func clearButtonPressed(_ sender: Any) {
@@ -67,6 +69,7 @@ class JDLDownloadViewController: UIViewController {
                 let resjson : JSON = JSON(response.result.value!)
                 if resjson["error"].string != nil{
                     self.progressLabel.text = "Invalid URL"
+                    self.downloadButton.isEnabled = true
                     return
                 }
                 print(resjson["title"].string!)
@@ -87,6 +90,7 @@ class JDLDownloadViewController: UIViewController {
         Alamofire.download(audioUrl, to: destination).downloadProgress { (progress) in
                 if progress.isIndeterminate{
                     self.progressLabel.text = "Download failed, please try again"
+                    self.downloadButton.isEnabled = true
                 }else{
                     self.progressView.progress = Float(progress.fractionCompleted)
                     self.progressLabel.text = String(format: "%.2f", progress.fractionCompleted*100)
@@ -94,11 +98,13 @@ class JDLDownloadViewController: UIViewController {
                 if progress.fractionCompleted == 1.0{
                     self.progressLabel.text = "Download Completed"
                     UINotificationFeedbackGenerator().notificationOccurred(.success)
+                    self.downloadButton.isEnabled = true
                 }
             }
             .response { (data) in
                 if data.error != nil{
                     self.progressLabel.text =  data.error!.localizedDescription
+                    self.downloadButton.isEnabled = true
                 }else{
                     print(data.destinationURL!.path)
                     print("DL Completed")
@@ -117,6 +123,7 @@ class JDLDownloadViewController: UIViewController {
                 let resJson : JSON = JSON(response.result.value!)
                 guard let url = resJson["vidInfo"]["2"]["dloadUrl"].string else {
                     self.secondSourceLabel.text = "Invalid response from server"
+                    self.downloadButton.isEnabled = true
                     return
                 }
                 self.songNameLabel.text = resJson["vidTitle"].string!
@@ -124,6 +131,7 @@ class JDLDownloadViewController: UIViewController {
                 self.secondSourceLabel.text = nil
             }else{
                 self.secondSourceLabel.text = "Server unavailable"
+                self.downloadButton.isEnabled = true
             }
         }
     }
@@ -174,6 +182,7 @@ class JDLDownloadViewController: UIViewController {
         actionSheet.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
             self.urlTextField.text = youtubeURL
             self.fetchDownloadLink()
+            self.downloadButton.isEnabled = false
         }))
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         

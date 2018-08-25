@@ -11,6 +11,7 @@ import UIKit
 class JDLNowPlayingListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     let instance = JDLAudioPlayer.instance
+    let audioFiles = JDLAudioPlayer.instance.getPlaylist()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,13 +35,12 @@ extension JDLNowPlayingListViewController: UITableViewDelegate, UITableViewDataS
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! JDLNowPlayingListTableViewCell
-        let audioData = instance.getPlayListFile(for: indexPath.row)
-        cell.updateLabel(audioData.name)
+        cell.updateLabel(audioFiles[indexPath.row].name)
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return instance.totalAudioFiles
+        return audioFiles.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
