@@ -52,13 +52,14 @@ class JDLAudioFilesViewController: UIViewController {
             tableView.reloadData()
         }
     }
+ 
     
     override func viewWillDisappear(_ animated: Bool) {
         searchController.isActive = false
         print("dissapear")
     }
-    func askForConfirmation(_ completion: @escaping (_ input: Bool) -> Void){
-        let test = UIAlertController(title: "Confirm Deletion", message: "Do you really want to delete this file?", preferredStyle: .alert)
+    private func askForConfirmation(_ completion: @escaping (_ input: Bool) -> Void){
+        let confirmationAlert = UIAlertController(title: "Confirm Deletion", message: "Do you really want to delete this file?", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "Yes", style: .destructive) { (action) in
             print("CONFIRMED YES")
             completion(true)
@@ -66,12 +67,32 @@ class JDLAudioFilesViewController: UIViewController {
         let noAction = UIAlertAction(title: "No", style: .cancel) { (action) in
             completion(false)
         }
-        test.addAction(yesAction)
-        test.addAction(noAction)
+        confirmationAlert.addAction(yesAction)
+        confirmationAlert.addAction(noAction)
 
-        self.present(test, animated: true)
+        self.present(confirmationAlert, animated: true)
+    }
+    private func showWarning(){
+        let warningAlert = UIAlertController(title: "", message: "You now have no files. You will be redirected to the download page.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            self.tabBarController?.selectedIndex = 0
+            
+        }
+        
+        setTabBarItemsState(true)
+        
+        warningAlert.addAction(okAction)
+        self.present(warningAlert, animated: true)
+    }
+    
+    //MARK: - UI
+    private func setTabBarItemsState(_ state: Bool){
+        self.tabBarController?.tabBar.items![1].isEnabled = !state
+        self.tabBarController?.tabBar.items![2].isEnabled = !state
     }
 }
+
+
 
 extension JDLAudioFilesViewController: UITableViewDelegate, UITableViewDataSource{
     
@@ -115,8 +136,8 @@ extension JDLAudioFilesViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAudioFileAction = UITableViewRowAction(style: .destructive, title: "DELETE") { (rowAction, indexPath) in
             print("DELETING SONG...")
-            self.askForConfirmation({ (isConfirmed) in
-                if isConfirmed{
+            self.askForConfirmation({ (confirmation) in
+                if confirmation{
                     //-------
                     self.instance.deleteAudioFileAt(path: self.audioFiles[indexPath.row].path, completion: { (hasDeleted) in
                         if hasDeleted{
@@ -124,6 +145,10 @@ extension JDLAudioFilesViewController: UITableViewDelegate, UITableViewDataSourc
                             self.show(message: "Success")
                             self.audioFiles = JDLAudioPlayer.instance.getJDLAudioFile
                             tableView.deleteRows(at: [indexPath], with: .automatic)
+                            
+                            if self.instance.isListEmpty{
+                                self.showWarning()
+                            }
                         }else{
                             self.show(message: "Error occurred")
                         }
@@ -139,7 +164,10 @@ extension JDLAudioFilesViewController: UITableViewDelegate, UITableViewDataSourc
             print("ADDING TO QUEUE")
         }
         addToQueuAction.backgroundColor = UIColor(red:0.00, green:0.52, blue:0.26, alpha:1.0)
-        
+        //FIXME: Need to find out the relationship between searchController while active and presenting a UIAlert
+        if !(searchController.searchBar.text?.isEmpty)!{
+            return [addToQueuAction]
+        }
         return [addToQueuAction, deleteAudioFileAction]
     }
 }

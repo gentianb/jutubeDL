@@ -47,6 +47,7 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
                 let audioFile = JDLAudioFile(path: url, albumart: getArtwork(audioPath: url))
                 audioFiles.append(audioFile)
             }
+            audioFiles.sort(by: { $0.name < $1.name })
             playlistFiles = audioFiles
         }catch {
             print("error accessing files")
@@ -331,7 +332,7 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
                 return
         }
         
-        //TODO: See why MediaCenter gets the wrong time when headset disconnects
+        //FIXME: See why MediaCenter gets the wrong time when headset disconnects
         switch reason {
         case .oldDeviceUnavailable:
             player?.pause()
