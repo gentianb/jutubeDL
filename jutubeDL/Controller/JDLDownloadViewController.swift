@@ -104,6 +104,7 @@ class JDLDownloadViewController: UIViewController {
             .response { (data) in
                 if data.error != nil{
                     self.progressLabel.text =  data.error!.localizedDescription
+                    print("Download failed")
                     self.downloadButton.isEnabled = true
                 }else{
                     print(data.destinationURL!.path)
