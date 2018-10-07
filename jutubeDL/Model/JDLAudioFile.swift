@@ -11,8 +11,8 @@ import UIKit
 
 class JDLAudioFile{
     public var name: String {
-            let fileName = (path.absoluteString as NSString).lastPathComponent.removingPercentEncoding!
-            return String(fileName.dropLast(4))
+            let fileName = (path.absoluteString as NSString).lastPathComponent
+            return String(fileName)
     }
     private(set) public var path: URL
     private(set) public var albumart: UIImage

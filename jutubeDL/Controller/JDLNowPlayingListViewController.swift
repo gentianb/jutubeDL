@@ -35,7 +35,7 @@ extension JDLNowPlayingListViewController: UITableViewDelegate, UITableViewDataS
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! JDLNowPlayingListTableViewCell
-        cell.updateLabel(audioFiles[indexPath.row].name)
+        cell.updateLabel(audioFiles[indexPath.row].audioName!)
         return cell
     }
     

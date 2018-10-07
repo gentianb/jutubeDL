@@ -21,6 +21,8 @@
 		F847233D20BB226900BB8BD2 /* JDLDownloadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F847233C20BB226900BB8BD2 /* JDLDownloadViewController.swift */; };
 		F847233F20BB248200BB8BD2 /* UIViewController+DismissKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F847233E20BB248200BB8BD2 /* UIViewController+DismissKeyboard.swift */; };
 		F85B3EE52131850A002A335A /* UIViewController+showMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85B3EE42131850A002A335A /* UIViewController+showMessage.swift */; };
+		F863DDAE2167CA5400781C34 /* String+removeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F863DDAD2167CA5400781C34 /* String+removeExtension.swift */; };
+		F86DFFC021615CA400A0E45C /* JDLCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F86DFFBE21615CA400A0E45C /* JDLCoreData.xcdatamodeld */; };
 		F884E6FA20BDE10A0068FB65 /* JDLAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F884E6F920BDE10A0068FB65 /* JDLAudioPlayer.swift */; };
 		F884E6FE20BDE72A0068FB65 /* JDLAudioFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F884E6FD20BDE72A0068FB65 /* JDLAudioFile.swift */; };
 		F889A793210A69C900D48301 /* gblogo.png in Resources */ = {isa = PBXBuildFile; fileRef = F889A792210A69C900D48301 /* gblogo.png */; };
@@ -47,6 +49,8 @@
 		F847233C20BB226900BB8BD2 /* JDLDownloadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDLDownloadViewController.swift; sourceTree = "<group>"; };
 		F847233E20BB248200BB8BD2 /* UIViewController+DismissKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+DismissKeyboard.swift"; sourceTree = "<group>"; };
 		F85B3EE42131850A002A335A /* UIViewController+showMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+showMessage.swift"; sourceTree = "<group>"; };
+		F863DDAD2167CA5400781C34 /* String+removeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+removeExtension.swift"; sourceTree = "<group>"; };
+		F86DFFBF21615CA400A0E45C /* JDLCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JDLCoreData.xcdatamodel; sourceTree = "<group>"; };
 		F884E6F920BDE10A0068FB65 /* JDLAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDLAudioPlayer.swift; sourceTree = "<group>"; };
 		F884E6FD20BDE72A0068FB65 /* JDLAudioFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JDLAudioFile.swift; sourceTree = "<group>"; };
 		F889A792210A69C900D48301 /* gblogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gblogo.png; sourceTree = "<group>"; };
@@ -103,6 +107,7 @@
 				F82C55F520BB908A00B3D112 /* NSObject+ClassNameSegue.swift */,
 				F84148E420C3F22700CDDC5C /* Collection+Shuffle.swift */,
 				F85B3EE42131850A002A335A /* UIViewController+showMessage.swift */,
+				F863DDAD2167CA5400781C34 /* String+removeExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -175,6 +180,7 @@
 				F83D1B0220BB0CA600253523 /* Controller */,
 				F8B4F11C20B71D51004EE642 /* Main.storyboard */,
 				F8B4F12120B71D53004EE642 /* LaunchScreen.storyboard */,
+				F86DFFBE21615CA400A0E45C /* JDLCoreData.xcdatamodeld */,
 				F8B4F11F20B71D53004EE642 /* Assets.xcassets */,
 				F8B4F12420B71D53004EE642 /* Info.plist */,
 			);
@@ -305,6 +311,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F84148ED20C43A9000CDDC5C /* JDLNowPlayingListTableViewCell.swift in Sources */,
+				F86DFFC021615CA400A0E45C /* JDLCoreData.xcdatamodeld in Sources */,
+				F863DDAE2167CA5400781C34 /* String+removeExtension.swift in Sources */,
 				F83D1B0420BB0CBB00253523 /* JDLAudioFilesViewController.swift in Sources */,
 				F8B4F11920B71D51004EE642 /* AppDelegate.swift in Sources */,
 				F884E6FA20BDE10A0068FB65 /* JDLAudioPlayer.swift in Sources */,
@@ -512,6 +520,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F86DFFBE21615CA400A0E45C /* JDLCoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F86DFFBF21615CA400A0E45C /* JDLCoreData.xcdatamodel */,
+			);
+			currentVersion = F86DFFBF21615CA400A0E45C /* JDLCoreData.xcdatamodel */;
+			path = JDLCoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F8B4F10D20B71D51004EE642 /* Project object */;
 }

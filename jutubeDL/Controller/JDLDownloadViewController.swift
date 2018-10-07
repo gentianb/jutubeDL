@@ -25,6 +25,8 @@ class JDLDownloadViewController: UIViewController {
     let instance = JDLAudioPlayer.instance
     
     private var lastYoutubeURL = ""
+    private var lastFileURL = URL(string: "")
+    private var downloadIsIndeterminate = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +34,7 @@ class JDLDownloadViewController: UIViewController {
         // Do any additional setup after loading the view.
         urlTextField.attributedPlaceholder = NSAttributedString(string: "Enter YT URL", attributes: [NSAttributedStringKey.foregroundColor : UIColor.lightGray])
         
-        setTabBarItemsState(instance.isListEmpty)
+        disableTabBarItemsState(instance.isListEmpty)
         
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground(_:)), name: .UIApplicationWillEnterForeground, object: nil)
     }
@@ -63,6 +65,8 @@ class JDLDownloadViewController: UIViewController {
     //MARK: - Networking
     func fetchDownloadLink(){
         print("Starting")
+        downloadIsIndeterminate = false
+        
         Alamofire.request("http://www.convertmp3.io/fetch/?format=JSON&video=\(urlTextField.text!)").responseJSON { (response) in
             if response.result.isSuccess{
                 print(response.result.value!)
@@ -89,14 +93,15 @@ class JDLDownloadViewController: UIViewController {
         
         Alamofire.download(audioUrl, to: destination).downloadProgress { (progress) in
                 if progress.isIndeterminate{
-                    self.progressLabel.text = "Download failed, please try again"
+                    self.progressLabel.text = "Download failed, please try again."
                     self.downloadButton.isEnabled = true
+                    self.downloadIsIndeterminate = true
                 }else{
                     self.progressView.progress = Float(progress.fractionCompleted)
                     self.progressLabel.text = String(format: "%.2f", progress.fractionCompleted*100)
                 }
                 if progress.fractionCompleted == 1.0{
-                    self.progressLabel.text = "Download Completed"
+                    self.progressLabel.text = "Download Completed."
                     UINotificationFeedbackGenerator().notificationOccurred(.success)
                     self.downloadButton.isEnabled = true
                 }
@@ -104,13 +109,28 @@ class JDLDownloadViewController: UIViewController {
             .response { (data) in
                 if data.error != nil{
                     self.progressLabel.text =  data.error!.localizedDescription
-                    print("Download failed")
+                    print("Download failed.")
                     self.downloadButton.isEnabled = true
                 }else{
+                    if self.downloadIsIndeterminate{
+                        //hotfix
+                        print("hotfix dl isIndeterminate true")
+                        return
+                    }
                     print(data.destinationURL!.path)
+                    print(data.destinationURL!.lastPathComponent)
+                    let csCopy = CharacterSet(bitmapRepresentation: CharacterSet.urlPathAllowed.bitmapRepresentation)
+
+                    let audioPath = data.destinationURL?.lastPathComponent.addingPercentEncoding(withAllowedCharacters: csCopy)
                     print("DL Completed")
-                    JDLAudioPlayer.instance.fetchAudioFiles()
-                    self.setTabBarItemsState(self.instance.isListEmpty)
+                    print("checking if file exists")
+                    if self.instance.fileExistsAt(path: data.destinationURL!.lastPathComponent){
+                        //save to core data because the file exists
+                        //sometimes this function gets called even when the file isn't downloaded.
+                        self.instance.addCoreData(Element: audioPath!)
+                    }
+                    //JDLAudioPlayer.instance.fetchAudioFiles()
+                    self.disableTabBarItemsState(self.instance.isListEmpty)
                 }
         }
     }
@@ -147,13 +167,14 @@ class JDLDownloadViewController: UIViewController {
         let destination: DownloadRequest.DownloadFileDestination = { _, _ in
             return (fileUrl, [.removePreviousFile])}
         print("THIS IS THE fileURL:  \(fileUrl)")
+        lastFileURL = fileUrl
         print("THIS IS THE destination:  \(destination)")
         return destination
     }
     
     
     //MARK: - UI
-    func setTabBarItemsState(_ state: Bool){
+    func disableTabBarItemsState(_ state: Bool){
         self.tabBarController?.tabBar.items![1].isEnabled = !state
         self.tabBarController?.tabBar.items![2].isEnabled = !state
     }

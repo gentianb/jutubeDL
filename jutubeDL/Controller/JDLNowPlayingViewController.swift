@@ -13,6 +13,8 @@ class JDLNowPlayingViewController: UIViewController, JDLNowPlayingVCDelegate {
     
 
     private let instance = JDLAudioPlayer.instance
+    private var lastAudioFile = AudioFile()
+    private var firstLaunch = true
     
     var transitionStyle = UIViewAnimationOptions.transitionCrossDissolve
 
@@ -139,7 +141,7 @@ class JDLNowPlayingViewController: UIViewController, JDLNowPlayingVCDelegate {
 
     //MARK: Update UI
     func updateNowPlaying(_ source: JDLListSource){
-        var audioFile: JDLAudioFile
+        var audioFile = instance.coreAudioFiles[0]
         
         switch source {
         case .nowPlayingList:
@@ -147,21 +149,33 @@ class JDLNowPlayingViewController: UIViewController, JDLNowPlayingVCDelegate {
         case .audioFilesList:
              audioFile = instance.getCurrentAudioFile()
         }
-        songNameLabel.text = audioFile.name
+        songNameLabel.text = audioFile.audioName!
         updatePlayPauseButton()
-        
-        if albumArtImage.image! == audioFile.albumart{return}
+        let newAlbumArtImage = instance.getArtwork(audioPath: URL(string:
+            "\(instance.appDirectory)\(audioFile.pathName!)")!)
+        //FIXME: comparison doesn't work properly
+        //if albumArtImage.image! == newAlbumArtImage {return}
 
+        if !firstLaunch && audioFile.pathName == lastAudioFile.pathName{
+            print("COMPARISON DONE, SONGS ARE THE SAME")
+            return
+        }
+        
+        lastAudioFile = audioFile
+        
+        if firstLaunch{
+            firstLaunch = false
+        }
         UIView.transition(with: self.albumArtImage, duration: 0.4, options: transitionStyle, animations: {
-            self.albumArtImage.image = audioFile.albumart
+            self.albumArtImage.image = newAlbumArtImage
         }, completion: nil)
         
         
         UIView.transition(with: self.backgroundAlbumArt, duration: 1.0, options: [.transitionCrossDissolve, .allowAnimatedContent, .layoutSubviews ], animations: {
-            self.backgroundAlbumArt.image = audioFile.albumart
+            self.backgroundAlbumArt.image = newAlbumArtImage
         }, completion: nil)
     }
-    
+
     func updatePlayPauseButton(){
         print("updateplaypause button called")
         

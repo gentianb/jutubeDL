@@ -11,7 +11,7 @@ import UIKit
 class JDLAudioFilesViewController: UIViewController {
     
     let instance = JDLAudioPlayer.instance
-    var audioFiles: [JDLAudioFile]!
+    var audioFiles = [AudioFile]()
     let searchController = UISearchController(searchResultsController: nil)
     
     @IBOutlet weak var tableView: UITableView!
@@ -23,8 +23,8 @@ class JDLAudioFilesViewController: UIViewController {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedOutsideOfTxtFields()
 
-        audioFiles = JDLAudioPlayer.instance.getJDLAudioFile
-
+        //audioFiles = JDLAudioPlayer.instance.getJDLAudioFile
+        audioFiles = JDLAudioPlayer.instance.coreAudioFiles
         tableView.delegate = self
         tableView.dataSource = self
         tableView.reloadData()
@@ -41,16 +41,22 @@ class JDLAudioFilesViewController: UIViewController {
         print("View did load")
         // Do any additional setup after loading the view.
         
+
+        
     }
+
     override func viewDidAppear(_ animated: Bool) {
         print(audioFiles.count)
         print(instance.totalAudioFiles)
         print("is localCount == to totalAudioFiles.count")
         print(localAudioFilesCount != instance.totalAudioFiles)
         if localAudioFilesCount != instance.totalAudioFiles{
-            audioFiles = instance.getJDLAudioFile
+            audioFiles = instance.coreAudioFiles
             tableView.reloadData()
         }
+        print("These are the paths")
+
+
     }
  
     
@@ -58,6 +64,7 @@ class JDLAudioFilesViewController: UIViewController {
         searchController.isActive = false
         print("dissapear")
     }
+    //MARK: - UIAlertController
     private func askForConfirmation(_ completion: @escaping (_ input: Bool) -> Void){
         let confirmationAlert = UIAlertController(title: "Confirm Deletion", message: "Do you really want to delete this file?", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "Yes", style: .destructive) { (action) in
@@ -79,21 +86,21 @@ class JDLAudioFilesViewController: UIViewController {
             
         }
         
-        setTabBarItemsState(true)
+        disableTabBarItemsState(true)
         
         warningAlert.addAction(okAction)
         self.present(warningAlert, animated: true)
     }
     
-    //MARK: - UI
-    private func setTabBarItemsState(_ state: Bool){
+    //MARK: - UI disableTabBarItemsState
+    private func disableTabBarItemsState(_ state: Bool){
         self.tabBarController?.tabBar.items![1].isEnabled = !state
         self.tabBarController?.tabBar.items![2].isEnabled = !state
     }
 }
 
 
-
+//MARK: - UITableView
 extension JDLAudioFilesViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -103,8 +110,12 @@ extension JDLAudioFilesViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! JDLAudioFilesListTableViewCell
+        
         let audioData = audioFiles[indexPath.row]
-        cell.updateCellView(with: audioData.name, and: audioData.albumart)
+        let audioArtwork = instance.getArtwork(audioPath: URL(string: "\(instance.appDirectory)\(audioData.pathName!)" )!)
+        
+        cell.updateCellView(with: audioData.audioName!, and: audioArtwork)
+        
         return cell
         }
     
@@ -121,7 +132,6 @@ extension JDLAudioFilesViewController: UITableViewDelegate, UITableViewDataSourc
         }else{
             instance.play(with: indexPath.row, source: .audioFilesList)
         }
-
         tableView.deselectRow(at: indexPath, animated: true)
     }
     //MARK: Edit Row Actions
@@ -139,13 +149,18 @@ extension JDLAudioFilesViewController: UITableViewDelegate, UITableViewDataSourc
             self.askForConfirmation({ (confirmation) in
                 if confirmation{
                     //-------
-                    self.instance.deleteAudioFileAt(path: self.audioFiles[indexPath.row].path, completion: { (hasDeleted) in
+                    let filePathToDelete = URL(string: "\(self.instance.appDirectory)\(self.audioFiles[indexPath.row].pathName!)")!
+                    self.instance.deleteAudioFileAt(path: filePathToDelete, completion: { (hasDeleted) in
                         if hasDeleted{
                             print("sucessfully deleted")
                             self.show(message: "Success")
-                            self.audioFiles = JDLAudioPlayer.instance.getJDLAudioFile
-                            tableView.deleteRows(at: [indexPath], with: .automatic)
                             
+                            self.instance.deleteCoreDataElement(with: self.audioFiles[indexPath.row].pathName!)
+                            
+                            
+                            self.audioFiles = JDLAudioPlayer.instance.getAudioFile
+                            tableView.deleteRows(at: [indexPath], with: .automatic)
+
                             if self.instance.isListEmpty{
                                 self.showWarning()
                             }
@@ -165,13 +180,14 @@ extension JDLAudioFilesViewController: UITableViewDelegate, UITableViewDataSourc
         }
         addToQueuAction.backgroundColor = UIColor(red:0.00, green:0.52, blue:0.26, alpha:1.0)
         //FIXME: Need to find out the relationship between searchController while active and presenting a UIAlert
+        //FIXME: ALSO causes crash when search controller is active and checkForYTUrl() gets called.
         if !(searchController.searchBar.text?.isEmpty)!{
             return [addToQueuAction]
         }
         return [addToQueuAction, deleteAudioFileAction]
     }
 }
-// MARK: UISearchController
+// MARK: - UISearchController
 extension JDLAudioFilesViewController: UISearchResultsUpdating{
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -181,14 +197,16 @@ extension JDLAudioFilesViewController: UISearchResultsUpdating{
     
     func filterAudioFiles(searchString search: String){
         if search == ""{
-            audioFiles = instance.getJDLAudioFile
+            audioFiles = instance.getAudioFile
             print("SEARCH DONE OR EMPTY!")
         }else{
-                audioFiles = instance.getJDLAudioFile
-            audioFiles = audioFiles.filter { (audio : JDLAudioFile) -> Bool in
-                audio.name.lowercased().contains(search.lowercased())
+            audioFiles = instance.getAudioFile
+            audioFiles = audioFiles.filter { (audio : AudioFile) -> Bool in
+                audio.audioName!.lowercased().contains(search.lowercased())
             }
+            print(audioFiles.count)
         }
+        
         tableView.reloadData()
     }
 }
