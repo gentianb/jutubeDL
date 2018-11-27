@@ -475,7 +475,7 @@
 				DEVELOPMENT_TEAM = YQP86PXBQJ;
 				INFOPLIST_FILE = jutubeDL/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.barileva.jutubeDL;
+				PRODUCT_BUNDLE_IDENTIFIER = com.barileva.jutubeDL1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -491,7 +491,7 @@
 				DEVELOPMENT_TEAM = YQP86PXBQJ;
 				INFOPLIST_FILE = jutubeDL/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.barileva.jutubeDL;
+				PRODUCT_BUNDLE_IDENTIFIER = com.barileva.jutubeDL1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;

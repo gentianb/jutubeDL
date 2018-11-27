@@ -9,10 +9,9 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-
+import WebKit
 
 class JDLDownloadViewController: UIViewController {
-    
     
     @IBOutlet weak var urlTextField: UITextField!
     @IBOutlet weak var downloadButton: UIButton!
@@ -20,13 +19,15 @@ class JDLDownloadViewController: UIViewController {
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var secondSourceLabel: UILabel!
-
+    
     
     let instance = JDLAudioPlayer.instance
+    private var webView: WKWebView!
     
     private var lastYoutubeURL = ""
     private var lastFileURL = URL(string: "")
     private var downloadIsIndeterminate = false
+    private var webURL = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +57,7 @@ class JDLDownloadViewController: UIViewController {
         }
         
     }
-
+    
     @IBAction func clearButtonPressed(_ sender: Any) {
         urlTextField.text = nil
     }
@@ -83,7 +84,11 @@ class JDLDownloadViewController: UIViewController {
             }else{
                 self.progressLabel.text = response.error!.localizedDescription
                 //try again with new source
-                self.fetchDownloadLinkSource2()
+                //FIXME: Server not working anymore
+                //self.fetchDownloadLinkSource2()
+                //NEW -----------------------------------
+                self.fetchDownloadLinkWithWebView()
+                //FIXME: need to add network checkers
             }
         }
     }
@@ -92,19 +97,19 @@ class JDLDownloadViewController: UIViewController {
         let destination = getDestination(audioName)
         
         Alamofire.download(audioUrl, to: destination).downloadProgress { (progress) in
-                if progress.isIndeterminate{
-                    self.progressLabel.text = "Download failed, please try again."
-                    self.downloadButton.isEnabled = true
-                    self.downloadIsIndeterminate = true
-                }else{
-                    self.progressView.progress = Float(progress.fractionCompleted)
-                    self.progressLabel.text = String(format: "%.2f", progress.fractionCompleted*100)
-                }
-                if progress.fractionCompleted == 1.0{
-                    self.progressLabel.text = "Download Completed."
-                    UINotificationFeedbackGenerator().notificationOccurred(.success)
-                    self.downloadButton.isEnabled = true
-                }
+            if progress.isIndeterminate{
+                self.progressLabel.text = "Download failed, please try again."
+                self.downloadButton.isEnabled = true
+                self.downloadIsIndeterminate = true
+            }else{
+                self.progressView.progress = Float(progress.fractionCompleted)
+                self.progressLabel.text = String(format: "%.2f", progress.fractionCompleted*100)
+            }
+            if progress.fractionCompleted == 1.0{
+                self.progressLabel.text = "Download Completed."
+                UINotificationFeedbackGenerator().notificationOccurred(.success)
+                self.downloadButton.isEnabled = true
+            }
             }
             .response { (data) in
                 if data.error != nil{
@@ -120,7 +125,7 @@ class JDLDownloadViewController: UIViewController {
                     print(data.destinationURL!.path)
                     print(data.destinationURL!.lastPathComponent)
                     let csCopy = CharacterSet(bitmapRepresentation: CharacterSet.urlPathAllowed.bitmapRepresentation)
-
+                    
                     let audioPath = data.destinationURL?.lastPathComponent.addingPercentEncoding(withAllowedCharacters: csCopy)
                     print("DL Completed")
                     print("checking if file exists")
@@ -156,7 +161,7 @@ class JDLDownloadViewController: UIViewController {
             }
         }
     }
-
+    
     
     
     
@@ -224,7 +229,7 @@ private extension String{
             return nil
         }
         return (self as NSString).substring(with: result.range)
-}
+    }
     var getYoutubeID: String? {
         let pattern = "((?<=(v|V)/)|(?<=be/)|(?<=(\\?|\\&)v=)|(?<=embed/))([\\w-]++)"
         
@@ -237,4 +242,73 @@ private extension String{
         return (self as NSString).substring(with: result.range)
     }
     
+}
+extension JDLDownloadViewController: WKUIDelegate, WKNavigationDelegate{
+    
+    private func fetchDownloadLinkWithWebView(){
+        secondSourceLabel.text = "Trying other source to download..."
+        
+        print("starting")
+        webView = WKWebView(frame: .zero, configuration: WKWebViewConfiguration())
+        webView.uiDelegate = self
+        webView.navigationDelegate = self
+        webView.isHidden = true
+        let webRequest = URLRequest(url: URL(string:"https://ytmp3.cc")!)
+        
+        webView.load(webRequest)
+    }
+    internal func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        print("web did finish loading")
+        clickButton()
+    }
+    
+    //scripting
+    private func clickButton(){
+        //let songURL = "https://www.youtube.com/watch?v=GlWjfO30zLM"
+        let jsString = "document.getElementById(\"input\").value = \"\(urlTextField.text!)\";document.getElementById(\"submit\").click();"
+        
+        webView.evaluateJavaScript(jsString) { (anyy, errr) in
+            if errr != nil{
+                print("error")
+                print(errr?.localizedDescription)
+            } else{
+                print("func loaded?")
+                self.secondSourceLabel.text = "Server contacted, waiting for response..."
+                self.chechForUrlInButton()
+            }
+        }
+    }
+    private func chechForUrlInButton(){
+        let viewJS = "document.getElementById(\"download\").attributes[\"href\"].textContent"
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
+            print("trying to eval")
+            self.webView.evaluateJavaScript(viewJS, completionHandler: { (data, errr) in
+                if errr != nil{
+                    print(errr?.localizedDescription)
+                } else{
+                    if data as! String != ""{
+                        print(data!)
+                        self.webURL = data as! String
+                        self.getAudioName()
+                        timer.invalidate()
+                    }else{
+                        print("not found")
+                    }
+                }
+            })
+        }
+    }
+    private func getAudioName(){
+        //document.getElementById("title").textContent
+        let getName = "document.getElementById(\"title\").textContent;"
+        webView.evaluateJavaScript(getName) { (name, errr) in
+            if errr != nil{
+                print(errr?.localizedDescription)
+            }else{
+                self.songNameLabel.text = (name as! String)
+                self.startDownload(audioUrl: self.webURL, audioName: (name as! String))
+                self.secondSourceLabel.text = nil
+            }
+        }
+    }
 }
