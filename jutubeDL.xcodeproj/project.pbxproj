@@ -32,6 +32,19 @@
 		F8B4F12320B71D53004EE642 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8B4F12120B71D53004EE642 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		F84A851A21AEEF2E00A11BAC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		41F95CE95121F3A8B618DBAE /* Pods_jutubeDL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_jutubeDL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A551C776F0F790772149641 /* Pods-jutubeDL.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-jutubeDL.release.xcconfig"; path = "Pods/Target Support Files/Pods-jutubeDL/Pods-jutubeDL.release.xcconfig"; sourceTree = "<group>"; };
@@ -199,6 +212,7 @@
 				F8B4F11220B71D51004EE642 /* Frameworks */,
 				F8B4F11320B71D51004EE642 /* Resources */,
 				F3F1039CB2CC7B2F798FEBEA /* [CP] Embed Pods Frameworks */,
+				F84A851A21AEEF2E00A11BAC /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -289,13 +303,11 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-jutubeDL/Pods-jutubeDL-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -473,6 +485,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YQP86PXBQJ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = jutubeDL/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.barileva.jutubeDL1;
@@ -489,6 +505,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YQP86PXBQJ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = jutubeDL/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.barileva.jutubeDL1;

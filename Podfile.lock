@@ -1,13 +1,9 @@
 PODS:
   - Alamofire (4.8.0)
-  - ChameleonFramework/Default (2.1.0)
-  - ChameleonFramework/Swift (2.1.0):
-    - ChameleonFramework/Default
   - SwiftyJSON (4.2.0)
 
 DEPENDENCIES:
   - Alamofire
-  - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
   - SwiftyJSON
 
 SPEC REPOS:
@@ -15,20 +11,10 @@ SPEC REPOS:
     - Alamofire
     - SwiftyJSON
 
-EXTERNAL SOURCES:
-  ChameleonFramework:
-    :git: https://github.com/ViccAlexander/Chameleon.git
-
-CHECKOUT OPTIONS:
-  ChameleonFramework:
-    :commit: 6dd284bde21ea2e7f9fd89bc36f40df16e16369d
-    :git: https://github.com/ViccAlexander/Chameleon.git
-
 SPEC CHECKSUMS:
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
-  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 2ca0944e7339f02c4889a283ea01fb4f339ea48b
+PODFILE CHECKSUM: 1754f44212de0ce57d72ccc62074d2b64ab39992
 
 COCOAPODS: 1.5.3

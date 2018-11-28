@@ -28,6 +28,7 @@ class JDLDownloadViewController: UIViewController {
     private var lastFileURL = URL(string: "")
     private var downloadIsIndeterminate = false
     private var webURL = ""
+    private var isJsCalled = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +62,6 @@ class JDLDownloadViewController: UIViewController {
     @IBAction func clearButtonPressed(_ sender: Any) {
         urlTextField.text = nil
     }
-    
     
     //MARK: - Networking
     func fetchDownloadLink(){
@@ -249,17 +249,26 @@ extension JDLDownloadViewController: WKUIDelegate, WKNavigationDelegate{
         secondSourceLabel.text = "Trying other source to download..."
         
         print("starting")
-        webView = WKWebView(frame: .zero, configuration: WKWebViewConfiguration())
+        webView = WKWebView(frame: CGRect(x: 0, y: 0, width: 1, height: 1), configuration: WKWebViewConfiguration())
         webView.uiDelegate = self
         webView.navigationDelegate = self
         webView.isHidden = true
+        print(view.subviews.count)
+        //view = webView
+        view.insertSubview(webView, at: 0)
         let webRequest = URLRequest(url: URL(string:"https://ytmp3.cc")!)
         
         webView.load(webRequest)
     }
     internal func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        print("web did finish loading")
-        clickButton()
+        if !isJsCalled{
+            isJsCalled = true
+            print("web did finish loading")
+            clickButton()
+            return
+        }
+        print("web did finish loading - IGNORED")
+
     }
     
     //scripting
@@ -308,6 +317,7 @@ extension JDLDownloadViewController: WKUIDelegate, WKNavigationDelegate{
                 self.songNameLabel.text = (name as! String)
                 self.startDownload(audioUrl: self.webURL, audioName: (name as! String))
                 self.secondSourceLabel.text = nil
+                self.isJsCalled = false
             }
         }
     }

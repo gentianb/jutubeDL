@@ -8,7 +8,6 @@ target 'jutubeDL' do
   # Pods for jutubeDL
   pod 'Alamofire'
   pod "SwiftyJSON"
-  pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
 
 
 end
