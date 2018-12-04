@@ -19,6 +19,7 @@ class JDLDownloadViewController: UIViewController {
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var secondSourceLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     
     let instance = JDLAudioPlayer.instance
@@ -247,7 +248,7 @@ extension JDLDownloadViewController: WKUIDelegate, WKNavigationDelegate{
     
     private func fetchDownloadLinkWithWebView(){
         secondSourceLabel.text = "Trying other source to download..."
-        
+        activityIndicator.startAnimating()
         print("starting")
         webView = WKWebView(frame: CGRect(x: 0, y: 0, width: 1, height: 1), configuration: WKWebViewConfiguration())
         webView.uiDelegate = self
@@ -280,6 +281,7 @@ extension JDLDownloadViewController: WKUIDelegate, WKNavigationDelegate{
             if errr != nil{
                 print("error")
                 print(errr?.localizedDescription)
+                self.activityIndicator.stopAnimating()
             } else{
                 print("func loaded?")
                 self.secondSourceLabel.text = "Server contacted, waiting for response..."
@@ -294,6 +296,7 @@ extension JDLDownloadViewController: WKUIDelegate, WKNavigationDelegate{
             self.webView.evaluateJavaScript(viewJS, completionHandler: { (data, errr) in
                 if errr != nil{
                     print(errr?.localizedDescription)
+                    self.activityIndicator.stopAnimating()
                 } else{
                     if data as! String != ""{
                         print(data!)
@@ -306,6 +309,27 @@ extension JDLDownloadViewController: WKUIDelegate, WKNavigationDelegate{
                 }
             })
         }
+        //set response from webview into label
+        let getResponseJS = "document.getElementById(\"progress\").textContent"
+        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
+            print("getting response")
+            self.webView.evaluateJavaScript(getResponseJS, completionHandler: { (data, errror) in
+                if errror != nil{
+                    print(errror?.localizedDescription)
+                    self.activityIndicator.stopAnimating()
+                }else{
+                    if data as! String != ""{
+                        print((data! as! String).replacingOccurrences(of: "^\\s*", with: ""))
+                        self.secondSourceLabel.text = (data! as! String).replacingOccurrences(of: "^\\n*", with: "")
+                        if self.webURL != ""{
+                            timer.invalidate()
+                            self.webURL = ""
+                            self.secondSourceLabel.text = ""
+                        }
+                    }
+                }
+            })
+        }
     }
     private func getAudioName(){
         //document.getElementById("title").textContent
@@ -313,11 +337,15 @@ extension JDLDownloadViewController: WKUIDelegate, WKNavigationDelegate{
         webView.evaluateJavaScript(getName) { (name, errr) in
             if errr != nil{
                 print(errr?.localizedDescription)
+                self.activityIndicator.stopAnimating()
+
             }else{
                 self.songNameLabel.text = (name as! String)
                 self.startDownload(audioUrl: self.webURL, audioName: (name as! String))
                 self.secondSourceLabel.text = nil
                 self.isJsCalled = false
+                self.activityIndicator.stopAnimating()
+
             }
         }
     }
