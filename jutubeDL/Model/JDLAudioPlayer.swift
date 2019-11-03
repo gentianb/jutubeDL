@@ -72,7 +72,7 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
     var coreAudioFiles = [AudioFile]()
     
     func fetchFilesFromCoreData(){
-        
+
         guard let appDelegate = appDelegate else {return}
         
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -397,9 +397,10 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
         updateCommandCenter(currentlyPlaying, duration: player.duration)
     }
     
-    @objc private func playFromCommandCenterWithScrub(_ event: MPChangePlaybackPositionCommandEvent) {
+    @objc private func playFromCommandCenterWithScrub(_ event: MPChangePlaybackPositionCommandEvent) -> MPRemoteCommandHandlerStatus {
         player?.currentTime = event.positionTime
         updateCommandCenter(currentlyPlaying, duration: player!.duration)
+        return .success
     }
     
     internal func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
@@ -439,11 +440,37 @@ class JDLAudioPlayer: NSObject, AVAudioPlayerDelegate{
         
         //TODO:- Research :  -> MPRemoteCommandHandlerStatus
         
-        commandCenter.playCommand.addTarget(self, action: #selector(togglePlayPause))
-        commandCenter.pauseCommand.addTarget(self, action: #selector(togglePlayPause))
-        commandCenter.nextTrackCommand.addTarget(self, action: #selector(next))
-        commandCenter.previousTrackCommand.addTarget(self, action: #selector(previous))
-        commandCenter.changePlaybackPositionCommand.addTarget(self, action: #selector(self.playFromCommandCenterWithScrub(_:)))
+//        commandCenter.playCommand.addTarget(self, action: #selector(togglePlayPause))
+//        commandCenter.pauseCommand.addTarget(self, action: #selector(togglePlayPause))
+//        commandCenter.nextTrackCommand.addTarget(self, action: #selector(next))
+//        commandCenter.previousTrackCommand.addTarget(self, action: #selector(previous))
+//        commandCenter.changePlaybackPositionCommand.addTarget(self, action: #selector(self.playFromCommandCenterWithScrub(_:)))
+        commandCenter.playCommand.addTarget { (_) -> MPRemoteCommandHandlerStatus in
+            self.togglePlayPause()
+            return .success
+        }
+        commandCenter.pauseCommand.addTarget { (_) -> MPRemoteCommandHandlerStatus in
+            self.togglePlayPause()
+            return .success
+        }
+        commandCenter.nextTrackCommand.addTarget { (_) -> MPRemoteCommandHandlerStatus in
+            self.next()
+            return .success
+        }
+        commandCenter.previousTrackCommand.addTarget { (_) -> MPRemoteCommandHandlerStatus in
+            self.previous()
+            return .success
+        }
+        commandCenter.changePlaybackPositionCommand.addTarget(handler: {
+            (event) in
+            let event = event as! MPChangePlaybackPositionCommandEvent
+            return self.playFromCommandCenterWithScrub(event)
+        })
+        
+        
+        
+        commandCenter.playCommand.isEnabled = true
+        
     }
     /// Update Command Center with the actual Audio File Info
     private func updateCommandCenter(_ index: Int, duration: TimeInterval){

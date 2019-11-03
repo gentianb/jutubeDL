@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AJA-Ab-e4G">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AJA-Ab-e4G">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,17 +13,17 @@
             <objects>
                 <viewController id="oq1-Gf-F9u" customClass="JDLNowPlayingViewController" customModule="jutubeDL" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cZ0-XN-Nli">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-album-image" translatesAutoresizingMaskIntoConstraints="NO" id="nJf-My-EA0">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wnf-en-ArZ">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:05" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ovJ-Hd-XBu">
-                                <rect key="frame" x="16" y="446" width="60" height="20.5"/>
+                                <rect key="frame" x="16" y="514.66666666666663" width="60" height="20.666666666666629"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="FJc-Cd-TK1"/>
                                 </constraints>
@@ -34,10 +32,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="M01-ml-IDs">
-                                <rect key="frame" x="5" y="525" width="365" height="78"/>
+                                <rect key="frame" x="5" y="594" width="404" height="78"/>
                                 <subviews>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZOB-dn-oAb">
-                                        <rect key="frame" x="0.0" y="16.5" width="45" height="45"/>
+                                        <rect key="frame" x="0.0" y="16.666666666666629" width="45" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="ZOB-dn-oAb" secondAttribute="height" multiplier="1:1" id="Ndl-8e-ElV"/>
                                             <constraint firstAttribute="width" constant="45" id="pOM-41-Tp3"/>
@@ -50,7 +48,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ha-DV-JMV">
-                                        <rect key="frame" x="77.5" y="14" width="50" height="50"/>
+                                        <rect key="frame" x="87.333333333333329" y="14" width="49.999999999999986" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="0ha-DV-JMV" secondAttribute="height" multiplier="1:1" id="sJ9-WZ-KNJ"/>
                                             <constraint firstAttribute="width" constant="50" id="x4r-g6-Kdf"/>
@@ -61,7 +59,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YnY-be-E0i">
-                                        <rect key="frame" x="143.5" y="0.0" width="78" height="78"/>
+                                        <rect key="frame" x="163" y="0.0" width="78" height="78"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="78" id="L9x-pf-gq5"/>
                                             <constraint firstAttribute="width" constant="78" id="hJv-2C-nlm"/>
@@ -73,7 +71,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="frp-mq-pa4">
-                                        <rect key="frame" x="237.5" y="14" width="50" height="50"/>
+                                        <rect key="frame" x="266.66666666666669" y="14" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="6WK-TT-SAv"/>
                                             <constraint firstAttribute="width" secondItem="frp-mq-pa4" secondAttribute="height" multiplier="1:1" id="bXu-Gb-xES"/>
@@ -84,7 +82,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w1h-Cu-gxb">
-                                        <rect key="frame" x="320" y="16.5" width="45" height="45"/>
+                                        <rect key="frame" x="359" y="16.666666666666629" width="45" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="w1h-Cu-gxb" secondAttribute="height" multiplier="1:1" id="f9C-Rx-Xq1"/>
                                             <constraint firstAttribute="width" constant="45" id="mnO-RJ-EHV"/>
@@ -101,7 +99,7 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2:34" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hth-c1-1c7">
-                                <rect key="frame" x="299" y="446" width="60" height="20.5"/>
+                                <rect key="frame" x="338" y="514.66666666666663" width="60" height="20.666666666666629"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="y0U-Fr-vt5"/>
                                 </constraints>
@@ -110,13 +108,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfr-hH-X7r">
-                                <rect key="frame" x="38" y="409" width="300" height="27.5"/>
+                                <rect key="frame" x="38" y="478" width="339" height="27.333333333333314"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tpc-z9-Epo">
-                                <rect key="frame" x="279" y="20" width="80" height="80"/>
+                                <rect key="frame" x="314" y="0.0" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="WcN-V2-FnV"/>
                                     <constraint firstAttribute="height" constant="80" id="muj-Dh-eWb"/>
@@ -128,14 +126,11 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="252" image="default-album-image" translatesAutoresizingMaskIntoConstraints="NO" id="880-HA-cj9">
-                                <rect key="frame" x="37.5" y="-22.5" width="300" height="512"/>
+                                <rect key="frame" x="15" y="140" width="384" height="256"/>
                                 <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="E5a-4V-2KF"/>
-                                </constraints>
                             </imageView>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="kMo-Oj-zuX">
-                                <rect key="frame" x="13" y="466.5" width="349" height="31"/>
+                                <rect key="frame" x="13" y="535.33333333333337" width="388" height="31"/>
                                 <color key="minimumTrackTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="audioSliderDraggingEnded:" destination="oq1-Gf-F9u" eventType="valueChanged" id="ixz-qB-gKo"/>
@@ -154,6 +149,7 @@
                             <constraint firstAttribute="bottom" secondItem="nJf-My-EA0" secondAttribute="bottom" id="Jrm-bd-v7e"/>
                             <constraint firstItem="880-HA-cj9" firstAttribute="centerY" secondItem="cZ0-XN-Nli" secondAttribute="centerY" constant="-100" id="K8N-9V-y3h"/>
                             <constraint firstItem="OFQ-LW-t5w" firstAttribute="bottom" secondItem="M01-ml-IDs" secondAttribute="bottom" constant="15" id="Ntv-uX-RSZ"/>
+                            <constraint firstAttribute="trailing" secondItem="880-HA-cj9" secondAttribute="trailing" constant="15" id="O7e-We-aF5"/>
                             <constraint firstItem="kMo-Oj-zuX" firstAttribute="top" secondItem="ovJ-Hd-XBu" secondAttribute="bottom" id="Qbb-UL-tm3"/>
                             <constraint firstItem="880-HA-cj9" firstAttribute="centerX" secondItem="cZ0-XN-Nli" secondAttribute="centerX" id="SeX-tu-j57"/>
                             <constraint firstItem="OFQ-LW-t5w" firstAttribute="trailing" secondItem="hth-c1-1c7" secondAttribute="trailing" constant="16" id="Ubr-I7-tY9"/>
@@ -167,6 +163,7 @@
                             <constraint firstItem="kMo-Oj-zuX" firstAttribute="top" secondItem="xfr-hH-X7r" secondAttribute="bottom" constant="30" id="rpM-Uz-S1Z"/>
                             <constraint firstItem="ovJ-Hd-XBu" firstAttribute="leading" secondItem="OFQ-LW-t5w" secondAttribute="leading" constant="16" id="uiN-MS-Xc7"/>
                             <constraint firstItem="tpc-z9-Epo" firstAttribute="top" secondItem="OFQ-LW-t5w" secondAttribute="top" id="usc-hG-utV"/>
+                            <constraint firstItem="880-HA-cj9" firstAttribute="leading" secondItem="cZ0-XN-Nli" secondAttribute="leading" constant="15" id="vci-IU-dKg"/>
                             <constraint firstAttribute="bottom" secondItem="wnf-en-ArZ" secondAttribute="bottom" id="wSJ-rI-Bc2"/>
                             <constraint firstItem="wnf-en-ArZ" firstAttribute="leading" secondItem="cZ0-XN-Nli" secondAttribute="leading" id="x2v-1Y-6c0"/>
                         </constraints>
@@ -195,22 +192,22 @@
             <objects>
                 <viewController id="dHW-Mt-adX" customClass="JDLNowPlayingListViewController" customModule="jutubeDL" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HMC-LH-qg2">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6Dg-mh-KLR">
-                                <rect key="frame" x="0.0" y="87" width="375" height="580"/>
+                                <rect key="frame" x="0.0" y="67" width="414" height="649"/>
                                 <color key="backgroundColor" red="0.15686274509803921" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="LCV-DT-PA9" customClass="JDLNowPlayingListTableViewCell" customModule="jutubeDL" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LCV-DT-PA9" id="MWW-Uf-zYc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n9A-qW-gRM">
-                                                    <rect key="frame" x="14" y="9" width="347" height="24"/>
+                                                    <rect key="frame" x="19" y="8.6666666666666643" width="376" height="24"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="17"/>
                                                     <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -230,7 +227,7 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VyX-99-mQz">
-                                <rect key="frame" x="303" y="33" width="60" height="36"/>
+                                <rect key="frame" x="303" y="13" width="60" height="36"/>
                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
                                 <state key="normal" title="Dismiss">
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -264,11 +261,11 @@
             <objects>
                 <viewController storyboardIdentifier="JDLYoutubeWebViewController" id="z8X-YV-bFU" customClass="JDLYoutubeWebViewController" customModule="jutubeDL" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9VP-KW-ezo">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" allowsBackForwardNavigationGestures="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7mG-8n-lX8">
-                                <rect key="frame" x="0.0" y="20" width="375" height="539"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="608"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" audio="YES" video="YES"/>
@@ -276,7 +273,7 @@
                                 </wkWebViewConfiguration>
                             </wkWebView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qCE-5v-79A">
-                                <rect key="frame" x="103" y="589" width="169" height="48"/>
+                                <rect key="frame" x="122.66666666666669" y="638" width="169" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="DOWNLOAD"/>
                                 <connections>
@@ -308,26 +305,26 @@
             <objects>
                 <viewController storyboardIdentifier="JDLPlayListViewController" id="9OC-6y-HD1" customClass="JDLAudioFilesViewController" customModule="jutubeDL" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3uC-XZ-6Km">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zaU-vj-mqr">
-                                <rect key="frame" x="0.0" y="65" width="375" height="602"/>
+                                <rect key="frame" x="0.0" y="45" width="414" height="691"/>
                                 <color key="backgroundColor" red="0.15686274509803921" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="separatorColor" red="0.15686274510000001" green="0.15686274510000001" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="100" id="po9-AT-ehn" customClass="JDLAudioFilesListTableViewCell" customModule="jutubeDL" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="po9-AT-ehn" id="zpc-nV-K8u">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TdU-72-vNi">
-                                                    <rect key="frame" x="5" y="2" width="365" height="95.5"/>
+                                                    <rect key="frame" x="5" y="2" width="404" height="96"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yQC-0p-sBi">
-                                                            <rect key="frame" x="10" y="10" width="207" height="75.5"/>
+                                                            <rect key="frame" x="10" y="10" width="207" height="76"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="207" id="8dB-I9-2Ex"/>
                                                             </constraints>
@@ -336,7 +333,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bGU-xD-TVk">
-                                                            <rect key="frame" x="265" y="0.0" width="93" height="95.5"/>
+                                                            <rect key="frame" x="265" y="0.0" width="132" height="96"/>
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -370,7 +367,7 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Songs:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q34-lW-t9X">
-                                <rect key="frame" x="16" y="33.5" width="52" height="23.5"/>
+                                <rect key="frame" x="20" y="13.666666666666666" width="52" height="23.333333333333336"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -402,11 +399,11 @@
             <objects>
                 <viewController id="z9X-yF-Bi0" customClass="JDLDownloadViewController" customModule="jutubeDL" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZpU-QL-reh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LR0-4X-pWu">
-                                <rect key="frame" x="70" y="176" width="235" height="63"/>
+                                <rect key="frame" x="70" y="156" width="274" height="63"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="63" id="ayq-PH-acd"/>
                                 </constraints>
@@ -415,11 +412,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xDA-uh-6oS">
-                                <rect key="frame" x="112" y="323" width="151" height="2"/>
+                                <rect key="frame" x="116" y="303" width="182" height="2"/>
                                 <color key="progressTintColor" red="0.082352941176470587" green="0.49411764705882355" blue="0.98431372549019602" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </progressView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter YT URL" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tg7-4k-A18">
-                                <rect key="frame" x="112" y="136" width="151" height="30"/>
+                                <rect key="frame" x="116" y="112" width="182" height="34"/>
                                 <color key="backgroundColor" red="0.15686274509803921" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
@@ -431,7 +428,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T29-U8-QZf">
-                                <rect key="frame" x="148" y="241" width="79" height="36"/>
+                                <rect key="frame" x="167.66666666666666" y="221" width="79" height="36"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
                                 <state key="normal" title="Download">
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -441,7 +438,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3C3-QX-HmV">
-                                <rect key="frame" x="20" y="50" width="46" height="30"/>
+                                <rect key="frame" x="20" y="30" width="46" height="30"/>
                                 <state key="normal" title="Button">
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -450,19 +447,19 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uYJ-sJ-1KF">
-                                <rect key="frame" x="0.0" y="333" width="375" height="0.0"/>
+                                <rect key="frame" x="0.0" y="313" width="414" height="0.0"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R66-T8-khI">
-                                <rect key="frame" x="187.5" y="340" width="0.0" height="0.0"/>
+                                <rect key="frame" x="207" y="320" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                 <color key="textColor" red="0.50164897496006777" green="0.72287298841454128" blue="0.98829740290000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NIK-DQ-Q6L">
-                                <rect key="frame" x="273.5" y="135" width="36" height="33"/>
+                                <rect key="frame" x="308.33333333333331" y="115" width="36" height="33"/>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="15"/>
                                 <state key="normal" title="Clear">
                                     <color key="titleColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -472,7 +469,7 @@
                                 </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="TnY-tG-dcd">
-                                <rect key="frame" x="169" y="481" width="37" height="37"/>
+                                <rect key="frame" x="169" y="550" width="76" height="37"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.15686274509803921" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -539,14 +536,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="TabBarNowPlaying" width="60" height="60"/>
-        <image name="TabBarplaylistIcon" width="50" height="50"/>
-        <image name="default-album-image" width="512" height="512"/>
-        <image name="next" width="204.80000305175781" height="204.80000305175781"/>
-        <image name="play" width="204.80000305175781" height="204.80000305175781"/>
-        <image name="playlist" width="204.80000305175781" height="204.80000305175781"/>
+        <image name="TabBarNowPlaying" width="25" height="25"/>
+        <image name="TabBarplaylistIcon" width="25" height="25"/>
+        <image name="default-album-image" width="256" height="256"/>
+        <image name="next" width="256" height="256"/>
+        <image name="play" width="256" height="256"/>
+        <image name="playlist" width="256" height="256"/>
         <image name="previous" width="256" height="256"/>
-        <image name="repeat" width="204.80000305175781" height="204.80000305175781"/>
-        <image name="shuffle" width="204.80000305175781" height="204.80000305175781"/>
+        <image name="repeat" width="256" height="256"/>
+        <image name="shuffle" width="256" height="256"/>
     </resources>
 </document>

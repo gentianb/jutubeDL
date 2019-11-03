@@ -8,7 +8,7 @@
 
 import UIKit
 
-class JDLNowPlayingViewController: UIViewController, JDLNowPlayingVCDelegate {
+class JDLNowPlayingViewController: UIViewController, JDLNowPlayingVCDelegate, UIGestureRecognizerDelegate {
 
     
 
@@ -29,8 +29,16 @@ class JDLNowPlayingViewController: UIViewController, JDLNowPlayingVCDelegate {
     @IBOutlet weak var audioSlider: UISlider!
     @IBOutlet weak var shuffleButton: UIButton!
     @IBOutlet weak var repeatButton: UIButton!
+
     
     
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+            print("gesture delegate called")
+        if let touchedView = touch.view, touchedView.isKind(of: UISlider.self){
+            return false
+        }
+        return true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +55,8 @@ class JDLNowPlayingViewController: UIViewController, JDLNowPlayingVCDelegate {
         rightSwipe.direction = .right
         self.view.addGestureRecognizer(rightSwipe)
         
+        leftSwipe.delegate = self
+        rightSwipe.delegate = self
         instance.jdlNowPlayingVCDelegate = self
         
         updateNowPlaying(JDLListSource.nowPlayingList)
@@ -199,7 +209,7 @@ class JDLNowPlayingViewController: UIViewController, JDLNowPlayingVCDelegate {
             if !self.audioSlider.isHighlighted{
                 self.audioSlider.setValue(Float(sliderValue), animated: true)
             }
-            
+            print("timer working")
             let currentMinutes = Int(self.instance.getCurrentAudioTime) / 60 % 60
             let currentSeconds = Int(self.instance.getCurrentAudioTime ) % 60
             

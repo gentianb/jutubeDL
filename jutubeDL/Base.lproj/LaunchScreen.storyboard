@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,34 +13,30 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gblogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="N8J-kR-7lF">
-                                <rect key="frame" x="0.0" y="197" width="375" height="137"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bzh-gW-vvd">
-                                <rect key="frame" x="0.0" y="385" width="375" height="24"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="G  E  N  T  I  A  N    B  A  R  I  L  E  V  A">
-                                        <attributes>
-                                            <font key="NSFont" size="17" name="Avenir-Light"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="G  E  N  T  I  Q  U  E" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bzh-gW-vvd">
+                                <rect key="frame" x="0.0" y="530.5" width="414" height="24"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="17"/>
+                                <color key="textColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gblogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="N8J-kR-7lF">
+                                <rect key="frame" x="-19" y="315.5" width="452" height="165"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="165" id="XQK-Eh-5Ob"/>
+                                    <constraint firstAttribute="width" constant="452" id="ii4-3q-jHw"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Bzh-gW-vvd" firstAttribute="top" secondItem="N8J-kR-7lF" secondAttribute="bottom" constant="50" id="2gj-df-go6"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Bzh-gW-vvd" secondAttribute="trailing" id="IoC-at-6hT"/>
-                            <constraint firstAttribute="trailing" secondItem="N8J-kR-7lF" secondAttribute="trailing" id="Iru-5s-AfL"/>
                             <constraint firstItem="Bzh-gW-vvd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Tyh-2q-bu9"/>
-                            <constraint firstItem="N8J-kR-7lF" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="Ukk-o8-KoP"/>
-                            <constraint firstItem="Bzh-gW-vvd" firstAttribute="top" secondItem="N8J-kR-7lF" secondAttribute="bottom" constant="51" id="gWi-vC-5Yp"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="N8J-kR-7lF" secondAttribute="bottom" constant="333" id="i45-iy-sXk"/>
-                            <constraint firstItem="N8J-kR-7lF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="177" id="n1N-bd-Rn4"/>
+                            <constraint firstItem="N8J-kR-7lF" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-50" id="crk-Fp-1F2"/>
+                            <constraint firstItem="N8J-kR-7lF" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="oc6-ql-JgJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

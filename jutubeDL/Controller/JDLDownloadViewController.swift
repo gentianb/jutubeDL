@@ -88,8 +88,10 @@ class JDLDownloadViewController: UIViewController {
                 //FIXME: Server not working anymore
                 //self.fetchDownloadLinkSource2()
                 //NEW -----------------------------------
+                                print("init new source")
                 self.fetchDownloadLinkWithWebView()
                 //FIXME: need to add network checkers
+
             }
         }
     }
@@ -290,7 +292,8 @@ extension JDLDownloadViewController: WKUIDelegate, WKNavigationDelegate{
         }
     }
     private func chechForUrlInButton(){
-        let viewJS = "document.getElementById(\"download\").attributes[\"href\"].textContent"
+        //let viewJS = "document.getElementById(\"download\").attributes[\"href\"].textContent"
+        let viewJS = "document.getElementById(\"buttons\").firstElementChild.href"
         Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
             print("trying to eval")
             self.webView.evaluateJavaScript(viewJS, completionHandler: { (data, errr) in
@@ -341,7 +344,7 @@ extension JDLDownloadViewController: WKUIDelegate, WKNavigationDelegate{
 
             }else{
                 self.songNameLabel.text = (name as! String)
-                self.startDownload(audioUrl: self.webURL, audioName: (name as! String))
+                self.startDownload(audioUrl: self.webURL, audioName: (name as! String)+".mp3")
                 self.secondSourceLabel.text = nil
                 self.isJsCalled = false
                 self.activityIndicator.stopAnimating()
